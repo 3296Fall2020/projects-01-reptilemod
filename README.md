@@ -58,6 +58,10 @@ http://www.minecraftforge.net/forum/index.php/topic,14048.0.html
 
 ## Vision Statement
 For Minecraft players who want a more enriched experience with Minecraft’s creatures, or general fans of reptiles, Minecraft: Reptiles is a forge mod that allows players to interact with new mobs, bosses and items in unique ways, raising and battling new creatures or crafting items pertaining to reptiles.  Unlike existing nature and wildlife mods that look more broadly and only scratch the surface of what reptiles have to offer, Minecraft: Reptiles provides both immersion and challenge specific to reptiles, and will be compatible with the latest version of Minecraft, while other mods are still only released for older versions.
+
+## Link To Trello Project Board
+https://trello.com/b/eVUMAlvM/minecraft-reptile-mod
+
 ## Personas
 - Kids
 	* No technical skills
