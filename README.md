@@ -1,3 +1,5 @@
+# Minecraft Reptile Mod
+
 -------------------------------------------
 Source installation information for modders
 -------------------------------------------
@@ -51,3 +53,25 @@ https://www.youtube.com/watch?v=8VEdtQLuLO0&feature=youtu.be
 
 For more details update more often refer to the Forge Forums:
 http://www.minecraftforge.net/forum/index.php/topic,14048.0.html
+
+## Project Overview
+
+## Vision Statement
+For Minecraft players who want a more enriched experience with Minecraft’s creatures, or general fans of reptiles, Minecraft: Reptiles is a forge mod that allows players to interact with new mobs, bosses and items in unique ways, raising and battling new creatures or crafting items pertaining to reptiles.  Unlike existing nature and wildlife mods that look more broadly and only scratch the surface of what reptiles have to offer, Minecraft: Reptiles provides both immersion and challenge specific to reptiles, and will be compatible with the latest version of Minecraft, while other mods are still only released for older versions.
+## Personas
+- Kids
+	* No technical skills
+	* Interested in the game aspect
+	* Limited computer knowledge
+- Adult
+	* Experienced with tech and software development
+- Adult2
+	* Experienced with games but no technical experience
+- Mod Maker
+	* High minecraft/coding experience
+- Educator
+	* Adam Smith is an elementary school education in Orlando, Florida.  He graduated from FSU in 2007 with an Education degree and has since taught 2nd–5th graders in a local elementary school.  
+	* While Adam's not too technically adept, he's able to use Minecraft: Education Edition to complement the cirriculumn in a more interactive way, helping students to better grasp topics in STEM, history, coding, and more.
+	* Recently, he's been looking for a way to teach his student's about local wildlife.  Minecraft's vanilla edition includes several common species, but not many common to his state of Florida.  Adam is interested in using the Reptiles mod to add some lizard species that are native to the area and are more relevant to the students.
+
+## Feature List
