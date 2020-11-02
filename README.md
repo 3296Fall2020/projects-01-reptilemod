@@ -63,10 +63,11 @@ For Minecraft players who want a more enriched experience with Minecraft’s cre
 https://trello.com/b/eVUMAlvM/minecraft-reptile-mod
 
 ## Personas
-- Kids
-	* No technical skills
-	* Interested in the game aspect
-	* Limited computer knowledge
+### Timmy, a middle schooler
+Timmy, age 12, is a middle school student.  Timmy lives with his family and his favorite subject in school is science.  He has a pet bearded dragon and owns a number of books on reptiles.  After school and homework he likes to spend his time playing video games.  He prefers sandbox and low stress video games because Timmy finds them relaxing and enjoys setting his own goals.
+
+Timmy has played Minecraft for a few years and is comfortable with the game.  Recently he has been looking for new challenges in the game and started reading about mods on the internet.  He is interested in the Minecraft Reptile mod because he saw that there is a bearded dragon mob included.  He wants to use the mod to interact with some of the reptiles that he has read about and expects them to behave both realistically and aligned with his expectations from other Minecraft mobs.
+
 - Adult
 	* Experienced with tech and software development
 - Adult2
