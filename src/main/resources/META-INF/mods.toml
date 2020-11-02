@@ -45,6 +45,11 @@ authors="Alyssa Dominico, Cameron Gallagher, Adam Gasiewski, Jake Gronikowski, C
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
+Minecraft: Reptiles adds new passive, neutral and hostile mobs to various Minecraft biomes.  
+New items provide tools specific to reptiles, and offer a choice between efficacy and unique effects.  
+The various reptiles can be captured, and kept in customizable tanks to keep as pets. 
+A new boss unique to the ocean and swamp biomes seems to be lurking, but is often regarded as just a myth.  
+Explore a more diversely populated world with Minecraft: Reptiles.
 Coming Soon...
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
