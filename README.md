@@ -57,11 +57,21 @@ http://www.minecraftforge.net/forum/index.php/topic,14048.0.html
 ## Project Overview
 Minecraft: Reptiles adds new passive, neutral and hostile mobs to various Minecraft biomes.  New items provide tools specific to reptiles, and offer a choice between efficacy and unique effects.  The various reptiles can be captured, and kept in customizable tanks to keep as pets.  A new boss unique to the ocean and swamp biomes seems to be lurking, but is often regarded as just a myth.  Explore a more diversely populated world with Minecraft: Reptiles.
 
+## Updated Project Proposal
+We propose a contribution to the popular game Minecraft in the form of a mod.  Minecraft is a sandbox game in which players can build endless creations with countless blocks. The game has been extremely popular with people of all ages since around 2010. There are different modes to play, the main two being creative mode, where players have an endless supply of blocks to use to build whatever they want, and survival mode, where players can explore worlds in different ways, all while having to survive.
+
+Minecraft has a number of animals in its world that the player can interact with.  Although the variety of animals has increased with continued development, we want to contribute to the ecological diversity in the game through our mod.  Our focus will be on introducing different types of reptiles.  We are all fans of this game and can use our passion and experience to provide exciting features for new and old players alike.
+
+The goal of this project is to build on the Minecraft experience by adding a number of reptile mobs to the game.  Each reptile will be distinct and have realistic behaviors inspired by nature.  For example, we will incorporate a chameleon that attempts to camouflage to its surroundings and a crocodile that preys on other unsuspecting mobs.  We will also create custom items and tools that will tie our new fauna into the Minecraft world, creating new challenges for players.
+
+Our project is well aligned with the educational goals of this class.  The development for Minecraft: Reptiles will require extensive use of Object Oriented Design and Design Patterns as we build on legacy code and add new features.  Project management and version control will also be critical to the success of our project.
+
+
 ## Vision Statement
 For Minecraft players who want a more enriched experience with Minecraft’s creatures, or general fans of reptiles, Minecraft: Reptiles is a forge mod that allows players to interact with new mobs, bosses and items in unique ways, raising and battling new creatures or crafting items pertaining to reptiles.  Unlike existing nature and wildlife mods that look more broadly and only scratch the surface of what reptiles have to offer, Minecraft: Reptiles provides both immersion and challenge specific to reptiles, and will be compatible with the latest version of Minecraft, while other mods are still only released for older versions.
 
-## Link To Trello Project Board
-https://trello.com/b/eVUMAlvM/minecraft-reptile-mod
+## Feature List
+[Link To Trello Project Board](https://trello.com/b/eVUMAlvM/minecraft-reptile-mod)
 
 ## Personas
 ### Timmy, a middle schooler
@@ -83,5 +93,3 @@ Eventually he built up a list of favored mods, and modpacks, but was curious if 
 	* Adam Smith is an elementary school education in Orlando, Florida.  He graduated from FSU in 2007 with an Education degree and has since taught 2nd–5th graders in a local elementary school.  
 	* While Adam's not too technically adept, he's able to use Minecraft: Education Edition to complement the cirriculumn in a more interactive way, helping students to better grasp topics in STEM, history, coding, and more.
 	* Recently, he's been looking for a way to teach his student's about local wildlife.  Minecraft's vanilla edition includes several common species, but not many common to his state of Florida.  Adam is interested in using the Reptiles mod to add some lizard species that are native to the area and are more relevant to the students.
-
-## Feature List
