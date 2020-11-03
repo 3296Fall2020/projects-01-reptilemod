@@ -72,6 +72,7 @@ For Minecraft players who want a more enriched experience with Minecraft’s cre
 
 ## Feature List
 [Link To Trello Project Board](https://trello.com/b/eVUMAlvM/minecraft-reptile-mod)
+<a href="https://trello.com/b/eVUMAlvM/minecraft-reptile-mod" target="_blank">New Tab</a>
 
 ## Personas
 ### Timmy, a middle schooler
