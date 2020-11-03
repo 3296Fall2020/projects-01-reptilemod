@@ -79,8 +79,10 @@ Timmy, age 12, is a middle school student.  Timmy lives with his family and his 
 
 Timmy has played Minecraft for a few years and is comfortable with the game.  Recently he has been looking for new challenges in the game and started reading about mods on the internet.  He is interested in the Minecraft Reptile mod because he saw that there is a bearded dragon mob included.  He wants to use the mod to interact with some of the reptiles that he has read about and expects them to behave both realistically and aligned with his expectations from other Minecraft mobs.
 
-- Adult
-	* Experienced with tech and software development
+### Michael, Adult with tech and software experience
+Michael, age 40 is a senior software developer whose company helps create the software at the local zoo. He helps implement recording systems for different behaviors of the animals.  When he is done with his workday, he goes home to see his family and sets time aside to play with his two younger children. He helps them set up different video games that they can play together and one of those games has been Minecraft.
+He wants to be able to have his kids see different types of animals within the game. He has never looked at how to add different mods to this game before, but he has the ability to see what the requirements are. He looks through different mods that add animals and ask his kids what type of animals their favorites are. They really enjoy being able to see the crocodiles when they visit the zoo. After looking at several different mods he finds the Minecraft: Reptiles mod.  He sees the ability to have several different types of reptiles along with being able to have some of the smaller ones as pets. Being able to see the different types of behaviors that can be implemented in this game gave Michael the idea to use the knowledge he has gained from working with different technology for zoologists to make more animals for his kids to experience in the game. Seeing the Minecraft: Reptile mod sparked the want to make more animal mobs to play around with, with his kids.
+
 	
 ### Adult with gaming experience, but no tech experience
 Tom is a restaurant owner in San Diego, California who spent a lot of his teenage years playing all different types of video games, including Minecraft. Over time, as he grew older he lost his passion for playing video games and started his new hobby of cooking, eventually opening his own restaurant. Since moving into his own apartment, he discovered that he really likes reptiles, and has a few of his own. 
