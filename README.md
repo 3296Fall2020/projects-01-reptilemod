@@ -81,8 +81,12 @@ Timmy has played Minecraft for a few years and is comfortable with the game.  Re
 
 - Adult
 	* Experienced with tech and software development
-- Adult2
-	* Experienced with games but no technical experience
+	
+### Adult with gaming experience, but no tech experience
+Tom is a restaurant owner in San Diego, California who spent a lot of his teenage years playing all different types of video games, including Minecraft. Over time, as he grew older he lost his passion for playing video games and started his new hobby of cooking, eventually opening his own restaurant. Since moving into his own apartment, he discovered that he really likes reptiles, and has a few of his own. 
+
+One of his younger employees mentioned that they found the Minecraft Reptile mod online, and they said that it sparked their interest in the game again. The next night he went home and re-downloaded Minecraft and installed the Minecraft Reptile mod very easily just by dragging and dropping a folder into the right location, which is very easy to figure out, even for someone with minimal tech experience. After playing for a little while, he encountered some of the reptiles that he owns and sparked his interest in the game again. 
+
 	
 ### John, a modder
 John, a 21 year old college student, studies at RPI in New York.  He spent years growing up playing Minecraft, and after a few, found the game to become somewhat stale and repetitive, but still wanted to play.  He eventually discovered mods, and through them, mod packs.  He started to play the game in all kinds of new ways, with expansions to nature, tech, space, challenges, and much more.  
