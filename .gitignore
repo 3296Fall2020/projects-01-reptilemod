@@ -30,5 +30,9 @@ build
 eclipse
 run
 
+# log
+.log
+
 # Files from Forge MDK
 forge*changelog.txt
+/.nb-gradle/
