@@ -1,5 +1,6 @@
 package edu.temple.reptiles;
 //Was able to push a commit through
+import edu.temple.reptiles.entities.ChameleonEntity;
 import edu.temple.reptiles.entities.CrocodileEntity;
 import edu.temple.reptiles.init.ModEntityTypes;
 import net.minecraft.block.Block;
@@ -55,6 +56,7 @@ public class Reptiles
 
         DeferredWorkQueue.runLater(() -> {
             // need an entry for each entity
+            GlobalEntityTypeAttributes.put(ModEntityTypes.CHAMELEON.get(), ChameleonEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.CROCODILE.get(), CrocodileEntity.setCustomAttributes().create());
         });
     }

@@ -1,7 +1,7 @@
 package edu.temple.reptiles.util;
 
 import edu.temple.reptiles.Reptiles;
-import edu.temple.reptiles.client.render.CrocodileRenderer;
+import edu.temple.reptiles.client.render.*;
 import edu.temple.reptiles.init.ModEntityTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,6 +15,7 @@ public class ClientEventBusSubscriber {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event){
         // Add one for each mob
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.CHAMELEON.get(), ChameleonRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.CROCODILE.get(), CrocodileRenderer::new);
     }
 }
