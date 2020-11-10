@@ -1,10 +1,6 @@
 package edu.temple.reptiles.init;
 
 import edu.temple.reptiles.Reptiles;
-import edu.temple.reptiles.entities.GeckoEntity;
-import edu.temple.reptiles.entities.GeckoEntity;
-import jdk.nashorn.api.scripting.ScriptObjectMirror;
-import edu.temple.reptiles.entities.DinosaurEntity;
 import edu.temple.reptiles.entities.*;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -35,4 +31,8 @@ public class ModEntityTypes {
         () -> EntityType.Builder.create(ChameleonEntity::new, EntityClassification.CREATURE)
                 .size(0.6f, 0.7f)
                 .build(new ResourceLocation(Reptiles.MOD_ID, "chameleon").toString()));
+    public static final RegistryObject<EntityType<BeardedDragonEntity>> BEARDEDDRAGON = ENTITY_TYPES
+            .register("beardeddragon",
+                    () -> EntityType.Builder.create(BeardedDragonEntity::new, EntityClassification.CREATURE)
+                            .size(0.25F,0.25F).build(new ResourceLocation(Reptiles.MOD_ID, "beardeddragon").toString()));
 }

@@ -1,14 +1,10 @@
 package edu.temple.reptiles;
-//Was able to push a commit through
-import edu.temple.reptiles.entities.GeckoEntity;
-import edu.temple.reptiles.entities.DinosaurEntity;
-import edu.temple.reptiles.entities.ChameleonEntity;
-import edu.temple.reptiles.entities.CrocodileEntity;
-import edu.temple.reptiles.init.ModEntityTypes;
+
+import edu.temple.reptiles.entities.*;
+import edu.temple.reptiles.init.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -25,7 +21,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.stream.Collectors;
 
-// Adam Gasiewski environment setup
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("reptiles")
@@ -44,8 +39,6 @@ public class Reptiles
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
-
-        ModEntityTypes.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         // Register ourselves for server and other game events we are interested in
 
@@ -66,6 +59,7 @@ public class Reptiles
             GlobalEntityTypeAttributes.put(ModEntityTypes.DINOSAUR.get(), DinosaurEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.CHAMELEON.get(), ChameleonEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.CROCODILE.get(), CrocodileEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.BEARDEDDRAGON.get(), BeardedDragonEntity.setCustomAttributes().create());
         });
     }
 
