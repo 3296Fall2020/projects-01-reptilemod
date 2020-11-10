@@ -1,7 +1,7 @@
 package edu.temple.reptiles;
 
 import edu.temple.reptiles.entities.*;
-import edu.temple.reptiles.init.ModEntityTypes;
+import edu.temple.reptiles.init.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
@@ -39,8 +39,6 @@ public class Reptiles
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
-
-        ModEntityTypes.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         // Register ourselves for server and other game events we are interested in
 
