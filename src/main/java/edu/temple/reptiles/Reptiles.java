@@ -1,11 +1,16 @@
 package edu.temple.reptiles;
 //Was able to push a commit through
+import edu.temple.reptiles.entities.ChameleonEntity;
+import edu.temple.reptiles.entities.CrocodileEntity;
+import edu.temple.reptiles.init.ModEntityTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -25,6 +30,7 @@ public class Reptiles
 {
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
+    public static final String MOD_ID = "reptiles";
 
     public Reptiles() {
         // Register the setup method for modloading
@@ -36,6 +42,8 @@ public class Reptiles
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
+        ModEntityTypes.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -45,6 +53,12 @@ public class Reptiles
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+
+        DeferredWorkQueue.runLater(() -> {
+            // need an entry for each entity
+            GlobalEntityTypeAttributes.put(ModEntityTypes.CHAMELEON.get(), ChameleonEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.CROCODILE.get(), CrocodileEntity.setCustomAttributes().create());
+        });
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
