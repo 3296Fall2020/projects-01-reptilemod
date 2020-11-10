@@ -1,3 +1,5 @@
 {
-  "entity.reptiles.dinosaur": "Dinosaur"
+  "entity.reptiles.dinosaur": "Dinosaur",
+  "entity.reptiles.crocodile": "Crocodile",
+  "entity.reptiles.chameleon": "Chameleon"
 }
