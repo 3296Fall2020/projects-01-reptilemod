@@ -1,7 +1,7 @@
 package edu.temple.reptiles.util;
 
 import edu.temple.reptiles.Reptiles;
-import edu.temple.reptiles.client.render.BeardedDragonRenderer;
+import edu.temple.reptiles.client.render.GeckoRenderer;
 import edu.temple.reptiles.init.ModEntityTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,7 +14,7 @@ public class ClientEventBusSubscriber {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event){
-        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BEARDEDDRAGON.get(), BeardedDragonRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.GECKO.get(), GeckoRenderer::new);
     }
 
 }

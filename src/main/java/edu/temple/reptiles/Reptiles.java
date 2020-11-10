@@ -1,6 +1,6 @@
 package edu.temple.reptiles;
 //Was able to push a commit through
-import edu.temple.reptiles.entities.BeardedDragonEntity;
+import edu.temple.reptiles.entities.GeckoEntity;
 import edu.temple.reptiles.init.ModEntityTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -54,7 +54,7 @@ public class Reptiles
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
 
         DeferredWorkQueue.runLater(() -> {
-            GlobalEntityTypeAttributes.put(ModEntityTypes.BEARDEDDRAGON.get(), BeardedDragonEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.GECKO.get(), GeckoEntity.setCustomAttributes().create());
         });
 
     }
