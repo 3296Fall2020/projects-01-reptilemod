@@ -1,6 +1,7 @@
 package edu.temple.reptiles.util;
 
 import edu.temple.reptiles.Reptiles;
+import edu.temple.reptiles.client.render.GeckoRenderer;
 import edu.temple.reptiles.client.render.DinosaurRenderer;
 import edu.temple.reptiles.client.render.*;
 import edu.temple.reptiles.init.ModEntityTypes;
@@ -20,6 +21,8 @@ public class ClientEventBusSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.CHAMELEON.get(), ChameleonRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.CROCODILE.get(), CrocodileRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DINOSAUR.get(), DinosaurRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.GECKO.get(), GeckoRenderer::new);
+
     }
 
 }

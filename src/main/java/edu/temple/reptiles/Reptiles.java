@@ -1,5 +1,6 @@
 package edu.temple.reptiles;
 //Was able to push a commit through
+import edu.temple.reptiles.entities.GeckoEntity;
 import edu.temple.reptiles.entities.DinosaurEntity;
 import edu.temple.reptiles.entities.ChameleonEntity;
 import edu.temple.reptiles.entities.CrocodileEntity;
@@ -22,7 +23,6 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.util.stream.Collectors;
 
 // Adam Gasiewski environment setup
@@ -48,7 +48,10 @@ public class Reptiles
         ModEntityTypes.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         // Register ourselves for server and other game events we are interested in
+
+        ModEntityTypes.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
         MinecraftForge.EVENT_BUS.register(this);
+
     }
 
     private void setup(final FMLCommonSetupEvent event)
@@ -59,7 +62,7 @@ public class Reptiles
 
         DeferredWorkQueue.runLater(() -> {
             // need an entry for each entity
-
+            GlobalEntityTypeAttributes.put(ModEntityTypes.GECKO.get(), GeckoEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.DINOSAUR.get(), DinosaurEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.CHAMELEON.get(), ChameleonEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.CROCODILE.get(), CrocodileEntity.setCustomAttributes().create());
