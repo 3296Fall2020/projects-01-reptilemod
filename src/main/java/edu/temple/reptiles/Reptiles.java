@@ -1,5 +1,6 @@
 package edu.temple.reptiles;
 //Was able to push a commit through
+import edu.temple.reptiles.entities.DinosaurEntity;
 import edu.temple.reptiles.entities.ChameleonEntity;
 import edu.temple.reptiles.entities.CrocodileEntity;
 import edu.temple.reptiles.init.ModEntityTypes;
@@ -23,6 +24,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.stream.Collectors;
+
+// Adam Gasiewski environment setup
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("reptiles")
@@ -56,6 +59,8 @@ public class Reptiles
 
         DeferredWorkQueue.runLater(() -> {
             // need an entry for each entity
+
+            GlobalEntityTypeAttributes.put(ModEntityTypes.DINOSAUR.get(), DinosaurEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.CHAMELEON.get(), ChameleonEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.CROCODILE.get(), CrocodileEntity.setCustomAttributes().create());
         });
