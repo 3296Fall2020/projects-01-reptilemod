@@ -21,6 +21,7 @@ public class ClientEventBusSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.DINOSAUR.get(), DinosaurRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.GECKO.get(), GeckoRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BEARDEDDRAGON.get(), BeardedDragonRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.NESSIE.get(), NessieRenderer::new);
 
     }
 
