@@ -1,5 +1,7 @@
 package edu.temple.reptiles.entities;
 
+import edu.temple.reptiles.Reptiles;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -14,8 +16,13 @@ import net.minecraft.pathfinding.PathFinder;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.pathfinding.SwimmerPathNavigator;
 import net.minecraft.pathfinding.WalkAndSwimNodeProcessor;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+
+import java.util.EnumSet;
 
 public class CrocodileEntity extends MonsterEntity {
 
@@ -39,7 +46,8 @@ public class CrocodileEntity extends MonsterEntity {
     protected void registerGoals(){
         super.registerGoals();
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.2D, false));
-        this.goalSelector.addGoal(8, new RandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(2, new FloatGoal(this, 1.0D));
+        this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
 
@@ -60,25 +68,26 @@ public class CrocodileEntity extends MonsterEntity {
     protected PathNavigator createNavigator(World worldIn) {
         return new CrocodileEntity.Navigator(this, worldIn);
     }
-    
+
+
     static class MoveHelperController extends MovementController{
         private final CrocodileEntity croc;
-        
+
         MoveHelperController(CrocodileEntity crocIn){
             super(crocIn);
             this.croc = crocIn;
         }
-        
+
         private void updateSpeed(){
-            if(this.croc.isInWater()){
-                // .add (x, y, z)
+            if(this.croc.areEyesInFluid(FluidTags.WATER)){
+//            if(this.croc.isInWater()){
                 this.croc.setMotion(this.croc.getMotion().add(0.0D, 0.005D, 0.0D));
             }
             else if(this.croc.onGround){
                 this.croc.setAIMoveSpeed(Math.max(this.croc.getAIMoveSpeed() / 1.5F, 0.15F));
             }
         }
-        
+
         public void tick(){
             this.updateSpeed();
             if (this.action == MovementController.Action.MOVE_TO && !this.croc.getNavigator().noPath()) {
@@ -97,8 +106,10 @@ public class CrocodileEntity extends MonsterEntity {
                 this.croc.setAIMoveSpeed(0.0F);
             }
         }
-            
+
     }
+
+
     
 
     static class Navigator extends SwimmerPathNavigator {
@@ -121,10 +132,43 @@ public class CrocodileEntity extends MonsterEntity {
 
 //        @Override
 //        public boolean canEntityStandOnPos(BlockPos pos){
-//            return true;
+//            return this.world.getBlockState(pos).isIn(Blocks.WATER);
 //        }
 
     }
+
+    static class FloatGoal extends MoveToBlockGoal{
+        private final CrocodileEntity croc;
+
+        FloatGoal(CrocodileEntity crocIn, double speedIn) {
+            super(crocIn, speedIn, 24);
+            this.croc = crocIn;
+            this.setMutexFlags(EnumSet.of(Flag.MOVE));
+        }
+
+        public boolean shouldExecute(){
+            return croc.isInWater() && super.shouldExecute();
+        }
+
+        public boolean shouldContinueExecuting(){
+            return croc.isInWater() && super.shouldContinueExecuting();
+        }
+
+        protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos){
+            return worldIn.isAirBlock(pos) && worldIn.getBlockState(pos.down()).isIn(Blocks.WATER);
+        }
+
+        public void startExecuting(){
+            Reptiles.LOGGER.debug("Croc - Begin Floating");
+            super.startExecuting();
+        }
+
+
+
+
+    }
+
+
 
 
 }
