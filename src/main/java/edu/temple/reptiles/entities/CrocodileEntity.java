@@ -21,14 +21,26 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animation.builder.AnimationBuilder;
+import software.bernie.geckolib.animation.controller.AnimationController;
+import software.bernie.geckolib.animation.controller.EntityAnimationController;
+import software.bernie.geckolib.entity.IAnimatedEntity;
+import software.bernie.geckolib.event.AnimationTestEvent;
+import software.bernie.geckolib.manager.EntityAnimationManager;
 
 import java.util.EnumSet;
 
-public class CrocodileEntity extends MonsterEntity {
+public class CrocodileEntity extends MonsterEntity implements IAnimatedEntity {
+    private EntityAnimationManager manager;
+    private AnimationController controller;
 
     public CrocodileEntity(EntityType<? extends MonsterEntity> type, World worldIn){
         super(type, worldIn);
         this.moveController = new CrocodileEntity.MoveHelperController(this);
+        this.manager = new EntityAnimationManager();
+        this.controller = new EntityAnimationController(this, "animationController", 20, this::animationPredicate);
+        registerAnimationControllers();
+
     }
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
@@ -69,6 +81,25 @@ public class CrocodileEntity extends MonsterEntity {
     protected PathNavigator createNavigator(World worldIn) {
         return new CrocodileEntity.Navigator(this, worldIn);
     }
+
+    public EntityAnimationManager getAnimationManager(){
+        return this.manager;
+    }
+
+    private<E extends CrocodileEntity> boolean animationPredicate(AnimationTestEvent<E> event){
+        if(this.isInWater()){
+            controller.setAnimation(new AnimationBuilder().addAnimation("animation.crocodile.swim", true));
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    private void registerAnimationControllers(){
+        this.manager.addAnimationController(this.controller);
+    }
+
+
 
     private class MoveHelperController extends MovementController{
         private final CrocodileEntity croc;
