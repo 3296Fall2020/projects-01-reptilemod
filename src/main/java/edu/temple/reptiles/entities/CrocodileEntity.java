@@ -46,10 +46,11 @@ public class CrocodileEntity extends MonsterEntity {
     protected void registerGoals(){
         super.registerGoals();
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.2D, false));
-        this.goalSelector.addGoal(2, new FloatGoal(this, 1.0D));
+        this.goalSelector.addGoal(4, new FloatGoal(this, 1.0D));
+        this.goalSelector.addGoal(9, new BaskGoal(this));
         this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(10, new LookRandomlyGoal(this));
 
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, CowEntity.class, true));
@@ -69,8 +70,7 @@ public class CrocodileEntity extends MonsterEntity {
         return new CrocodileEntity.Navigator(this, worldIn);
     }
 
-
-    static class MoveHelperController extends MovementController{
+    private class MoveHelperController extends MovementController{
         private final CrocodileEntity croc;
 
         MoveHelperController(CrocodileEntity crocIn){
@@ -80,10 +80,9 @@ public class CrocodileEntity extends MonsterEntity {
 
         private void updateSpeed(){
             if(this.croc.areEyesInFluid(FluidTags.WATER)){
-//            if(this.croc.isInWater()){
                 this.croc.setMotion(this.croc.getMotion().add(0.0D, 0.005D, 0.0D));
             }
-            else if(this.croc.onGround){
+            else if(this.croc.isOnGround()){
                 this.croc.setAIMoveSpeed(Math.max(this.croc.getAIMoveSpeed() / 1.5F, 0.15F));
             }
         }
@@ -91,6 +90,7 @@ public class CrocodileEntity extends MonsterEntity {
         public void tick(){
             this.updateSpeed();
             if (this.action == MovementController.Action.MOVE_TO && !this.croc.getNavigator().noPath()) {
+                this.action = MovementController.Action.WAIT;
                 double d0 = this.posX - this.croc.getPosX();
                 double d1 = this.posY - this.croc.getPosY();
                 double d2 = this.posZ - this.croc.getPosZ();
@@ -130,10 +130,47 @@ public class CrocodileEntity extends MonsterEntity {
             return new PathFinder(this.nodeProcessor, p_179679_1_);
         }
 
-//        @Override
-//        public boolean canEntityStandOnPos(BlockPos pos){
-//            return this.world.getBlockState(pos).isIn(Blocks.WATER);
+
+    }
+
+    static class BaskGoal extends Goal{
+        private final CrocodileEntity croc;
+        private int time;
+
+
+        BaskGoal(CrocodileEntity crocIn){
+            this.croc = crocIn;
+        }
+
+        @Override
+        public boolean shouldExecute() {
+            return this.croc.isOnGround() && this.croc.world.isDaytime() && !this.croc.world.isRaining() && !this.croc.world.isThundering() && !this.croc.world.getBlockState(this.croc.getPosition().down()).isIn(Blocks.WATER);
+        }
+
+        public boolean shouldContinueExecuting(){
+            return time > 0 && this.shouldExecute();
+        }
+
+        public void startExecuting(){
+//            Reptiles.LOGGER.debug("Croc - Begin Bask");
+            this.croc.getNavigator().clearPath();
+            this.time = 80 + this.croc.getRNG().nextInt(40);
+
+        }
+
+        public void tick(){
+            // TODO: Add a pose or animation
+            // Temporary visual indicator that the goal is occurring
+            this.croc.getLookController().setLookPosition(this.croc.getPosX() + 1.0D, this.croc.getPosYEye() + 1.0D, this.croc.getPosZ() + 1.0D);
+            --this.time;
+
+        }
+
+//        public void resetTask(){
+////            this.croc.setNoAI(false);
+//            Reptiles.LOGGER.debug("End Bask");
 //        }
+
 
     }
 
@@ -143,25 +180,34 @@ public class CrocodileEntity extends MonsterEntity {
         FloatGoal(CrocodileEntity crocIn, double speedIn) {
             super(crocIn, speedIn, 24);
             this.croc = crocIn;
-            this.setMutexFlags(EnumSet.of(Flag.MOVE));
+            this.setMutexFlags(EnumSet.of(Flag.MOVE, Flag.JUMP));
         }
 
+        @Override
         public boolean shouldExecute(){
             return croc.isInWater() && super.shouldExecute();
         }
 
+        @Override
         public boolean shouldContinueExecuting(){
             return croc.isInWater() && super.shouldContinueExecuting();
         }
 
+        @Override
         protected boolean shouldMoveTo(IWorldReader worldIn, BlockPos pos){
             return worldIn.isAirBlock(pos) && worldIn.getBlockState(pos.down()).isIn(Blocks.WATER);
         }
 
+        @Override
         public void startExecuting(){
-            Reptiles.LOGGER.debug("Croc - Begin Floating");
             super.startExecuting();
+//            Reptiles.LOGGER.debug("Croc - Begin Floating");
         }
+
+//        @Override
+//        public void resetTask(){
+////            Reptiles.LOGGER.debug("Croc - End Floating");
+//        }
 
 
 
