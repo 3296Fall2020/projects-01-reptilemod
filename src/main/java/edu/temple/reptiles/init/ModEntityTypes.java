@@ -3,8 +3,13 @@ package edu.temple.reptiles.init;
 import edu.temple.reptiles.Reptiles;
 import edu.temple.reptiles.entities.*;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -35,4 +40,8 @@ public class ModEntityTypes {
             .register("beardeddragon",
                     () -> EntityType.Builder.create(BeardedDragonEntity::new, EntityClassification.CREATURE)
                             .size(0.25F,0.25F).build(new ResourceLocation(Reptiles.MOD_ID, "beardeddragon").toString()));
+
+
+
 }
+
