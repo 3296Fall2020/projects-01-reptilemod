@@ -1,6 +1,7 @@
 package edu.temple.reptiles.entities;
 
 import edu.temple.reptiles.Reptiles;
+import edu.temple.reptiles.entities.ai.BaskGoal;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -47,7 +48,7 @@ public class CrocodileEntity extends MonsterEntity {
         super.registerGoals();
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.2D, false));
         this.goalSelector.addGoal(4, new FloatGoal(this, 1.0D));
-        this.goalSelector.addGoal(9, new BaskGoal(this));
+        this.goalSelector.addGoal(6, new CrocBaskGoal(this));
         this.goalSelector.addGoal(7, new RandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(10, new LookRandomlyGoal(this));
@@ -83,25 +84,28 @@ public class CrocodileEntity extends MonsterEntity {
                 this.croc.setMotion(this.croc.getMotion().add(0.0D, 0.005D, 0.0D));
             }
             else if(this.croc.isOnGround()){
-                this.croc.setAIMoveSpeed(Math.max(this.croc.getAIMoveSpeed() / 1.5F, 0.15F));
+                this.croc.setAIMoveSpeed(Math.max(this.croc.getAIMoveSpeed() / 2.0F, 0.15F));
             }
         }
 
         public void tick(){
             this.updateSpeed();
             if (this.action == MovementController.Action.MOVE_TO && !this.croc.getNavigator().noPath()) {
-                this.action = MovementController.Action.WAIT;
+                float f1 = (float)(this.speed * this.croc.getAttributeValue(Attributes.MOVEMENT_SPEED));
+                this.croc.setAIMoveSpeed(MathHelper.lerp(0.125F, this.croc.getAIMoveSpeed(), f1));
                 double d0 = this.posX - this.croc.getPosX();
                 double d1 = this.posY - this.croc.getPosY();
                 double d2 = this.posZ - this.croc.getPosZ();
-                double d3 = (double) MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
-                d1 = d1 / d3;
-                float f = (float)(MathHelper.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F;
-                this.croc.rotationYaw = this.limitAngle(this.croc.rotationYaw, f, 90.0F);
-                this.croc.renderYawOffset = this.croc.rotationYaw;
-                float f1 = (float)(this.speed * this.croc.getAttributeValue(Attributes.MOVEMENT_SPEED));
-                this.croc.setAIMoveSpeed(MathHelper.lerp(0.125F, this.croc.getAIMoveSpeed(), f1));
-                this.croc.setMotion(this.croc.getMotion().add(0.0D, (double)this.croc.getAIMoveSpeed() * d1 * 0.1D, 0.0D));
+                if(d1 != 0.0D) {
+                    double d3 = (double) MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
+                    this.croc.setMotion(this.croc.getMotion().add(0.0D, (double) this.croc.getAIMoveSpeed() * (d1 / d3) * 0.1D, 0.0D));
+                }
+                if (d0 != 0.0D || d2 != 0.0D) {
+                    float f = (float) (MathHelper.atan2(d2, d0) * (double) (180F / (float) Math.PI)) - 90.0F;
+                    this.croc.rotationYaw = this.limitAngle(this.croc.rotationYaw, f, 90.0F);
+                    this.croc.renderYawOffset = this.croc.rotationYaw;
+                }
+
             } else {
                 this.croc.setAIMoveSpeed(0.0F);
             }
@@ -133,46 +137,20 @@ public class CrocodileEntity extends MonsterEntity {
 
     }
 
-    static class BaskGoal extends Goal{
-        private final CrocodileEntity croc;
-        private int time;
+    static class CrocBaskGoal extends BaskGoal{
 
-
-        BaskGoal(CrocodileEntity crocIn){
-            this.croc = crocIn;
+        CrocBaskGoal(CrocodileEntity crocIn){
+            super(crocIn);
         }
 
         @Override
-        public boolean shouldExecute() {
-            return this.croc.isOnGround() && this.croc.world.isDaytime() && !this.croc.world.isRaining() && !this.croc.world.isThundering() && !this.croc.world.getBlockState(this.croc.getPosition().down()).isIn(Blocks.WATER);
-        }
-
-        public boolean shouldContinueExecuting(){
-            return time > 0 && this.shouldExecute();
-        }
-
-        public void startExecuting(){
-//            Reptiles.LOGGER.debug("Croc - Begin Bask");
-            this.croc.getNavigator().clearPath();
-            this.time = 80 + this.croc.getRNG().nextInt(40);
-
-        }
-
-        public void tick(){
+        public void baskAction(){
             // TODO: Add a pose or animation
             // Temporary visual indicator that the goal is occurring
-            this.croc.getLookController().setLookPosition(this.croc.getPosX() + 1.0D, this.croc.getPosYEye() + 1.0D, this.croc.getPosZ() + 1.0D);
-            --this.time;
-
+            this.creature.getLookController().setLookPosition(this.creature.getPosX() + 1.0D, this.creature.getPosYEye() + 1.0D, this.creature.getPosZ() + 1.0D);
         }
-
-//        public void resetTask(){
-////            this.croc.setNoAI(false);
-//            Reptiles.LOGGER.debug("End Bask");
-//        }
-
-
     }
+
 
     static class FloatGoal extends MoveToBlockGoal{
         private final CrocodileEntity croc;
@@ -201,20 +179,6 @@ public class CrocodileEntity extends MonsterEntity {
         @Override
         public void startExecuting(){
             super.startExecuting();
-//            Reptiles.LOGGER.debug("Croc - Begin Floating");
         }
-
-//        @Override
-//        public void resetTask(){
-////            Reptiles.LOGGER.debug("Croc - End Floating");
-//        }
-
-
-
-
     }
-
-
-
-
 }
