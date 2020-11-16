@@ -11,9 +11,10 @@ public class ModItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Reptiles.MOD_ID);
 
+
     public static final RegistryObject<Item> CRICKET = ITEMS.register("cricket",
             () -> new Item(new Item.Properties().group(ItemGroup.MISC))
-            );
+    );
 
     public static final RegistryObject<Item> MEAL_WORM = ITEMS.register("meal_worm",
             () -> new Item(new Item.Properties().group(ItemGroup.MISC))
