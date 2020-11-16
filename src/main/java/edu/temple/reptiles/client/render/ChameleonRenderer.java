@@ -24,7 +24,7 @@ public class ChameleonRenderer extends MobRenderer<ChameleonEntity, ChameleonMod
             new ResourceLocation(Reptiles.MOD_ID, "textures/entity/chameleon/swimming_chameleon.png");
 
     public ChameleonRenderer(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new ChameleonModel<>(), 0.5f);
+        super(renderManagerIn, new ChameleonModel<>(), 0.3f);
     }
 
     @Override
