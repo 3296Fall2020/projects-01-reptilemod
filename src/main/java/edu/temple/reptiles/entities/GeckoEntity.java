@@ -2,7 +2,6 @@ package edu.temple.reptiles.entities;
 
 //import edu.temple.reptiles.init.ModEntityTypes;
 import com.google.common.collect.Sets;
-import edu.temple.reptiles.client.model.GeckoModel;
 import edu.temple.reptiles.init.ModEntityTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -45,7 +44,7 @@ public class GeckoEntity extends ShoulderRidingEntity {
         private GeckoEntity.TemptGoal aiTempt;
         private static final DataParameter<Boolean> IS_TRUSTING = EntityDataManager.createKey(GeckoEntity.class, DataSerializers.BOOLEAN);
     private AgeableEntity ageable;
-    private boolean partyParrot;
+    private boolean partyGecko;
 
     public GeckoEntity(EntityType<? extends GeckoEntity> type, World worldIn) {
         super(type, worldIn);
@@ -75,8 +74,8 @@ public class GeckoEntity extends ShoulderRidingEntity {
             this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0D, 5.0F, 1.0F, true));
             this.goalSelector.addGoal(3, this.aiTempt);
             this.goalSelector.addGoal(3, new LandOnOwnersShoulderGoal(this));
-            this.goalSelector.addGoal(9, new BreedGoal(this, 0.8D));
-            this.goalSelector.addGoal(10, new WaterAvoidingRandomWalkingGoal(this, 0.8D, 1.0000001E-5F));
+            this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
+            this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.8D, 1.0000001E-5F));
             this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 10.0F));
             this.goalSelector.addGoal(8, new PanicGoal(this, .6));
             this.goalSelector.addGoal(1, new TemptGoal(this, 1.25D, Ingredient.fromItems(Items.APPLE), false));
@@ -216,9 +215,13 @@ public class GeckoEntity extends ShoulderRidingEntity {
             return super.func_230254_b_(p_230254_1_, p_230254_2_);
         }
     }
+
+
+
+
     @OnlyIn(Dist.CLIENT)
     public boolean isPartying() {
-        return this.partyParrot;
+        return this.partyGecko;
     }
 
 
