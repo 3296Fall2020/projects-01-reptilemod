@@ -22,9 +22,12 @@ public class DinosaurEntity extends MonsterEntity {
     public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
         return MonsterEntity.func_234295_eP_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 40.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.15D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 4.0D)
-                .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.0D);
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.5D)
+                .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.0D)
+                .createMutableAttribute(Attributes.ARMOR, 3.0D)
+                .createMutableAttribute(Attributes.ARMOR_TOUGHNESS, 1.0D)
+                .createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D);
     }
 
     @Override
@@ -47,13 +50,16 @@ public class DinosaurEntity extends MonsterEntity {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(2, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(3, new LookRandomlyGoal(this));
-        this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 1.0F));
+        this.goalSelector.addGoal(2, new SwimGoal(this));
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.2D, false));
+        //this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.5F));
 
-
+        this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(2, new LeapAtTargetGoal(this, 0.5F));
 
     }
 }

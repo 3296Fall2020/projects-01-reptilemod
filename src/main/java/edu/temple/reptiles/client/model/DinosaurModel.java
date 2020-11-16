@@ -83,7 +83,7 @@ public class DinosaurModel<T extends DinosaurEntity> extends EntityModel<T> {
         leg3.setTextureOffset(56, 80).addBox(8.0F, -8.0F, -4.0F, 8.0F, 34.0F, 8.0F, 0.0F, false);
 
         tail = new ModelRenderer(this);
-        tail.setRotationPoint(0.0F, 24.0F, 0.0F);
+        tail.setRotationPoint(0.0F, 24.0F, -2.0F);
 
 
         tail3_r1 = new ModelRenderer(this);
