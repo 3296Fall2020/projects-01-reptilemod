@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class BeardedDragonRenderer extends MobRenderer<BeardedDragonEntity, BeardedDragonModel<BeardedDragonEntity>> {
 
-    protected static final ResourceLocation TEXTURE = new ResourceLocation(Reptiles.MOD_ID, "textures/entity/beardeddragon.png");
+    protected static final ResourceLocation TEXTURE = new ResourceLocation(Reptiles.MOD_ID, "textures/entity/bearded_dragon.png");
 
     public BeardedDragonRenderer(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new BeardedDragonModel<>(), 0.7F);
