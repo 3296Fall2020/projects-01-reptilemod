@@ -32,7 +32,7 @@ public class BeardedDragonEntity extends AnimalEntity {
     public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
         return MobEntity.registerAttributes()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 10.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.15D)
                 .createMutableAttribute(Attributes.FOLLOW_RANGE);
     }
 
@@ -47,6 +47,7 @@ public class BeardedDragonEntity extends AnimalEntity {
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
+
 
     }
 
