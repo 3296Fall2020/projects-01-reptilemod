@@ -20,6 +20,9 @@ public class ModEntitySpawns {
             if (biome.getCategory() == Biome.Category.DESERT || biome.getCategory() == Biome.Category.PLAINS || biome.getCategory() == Biome.Category.SAVANNA || biome.getCategory() == Biome.Category.MESA){
                 biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(ModEntityTypes.DINOSAUR.get(), 100, 1, 6));
             }
+            if(biome.getCategory() == Biome.Category.DESERT || biome.getCategory() == Biome.Category.MESA){
+                biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.BEARDEDDRAGON.get(), 100, 1, 2));
+            }
         }
     }
 
