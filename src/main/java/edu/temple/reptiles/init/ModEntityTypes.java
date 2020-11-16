@@ -14,10 +14,12 @@ public class ModEntityTypes {
     public static DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, Reptiles.MOD_ID);
 
     //Entity Types
-    public static final RegistryObject<EntityType<GeckoEntity>> GECKO = ENTITY_TYPES
-            .register("gecko",
-                    () -> EntityType.Builder.create(GeckoEntity::new, EntityClassification.CREATURE)
-            .size(0.25F,0.25F).build(new ResourceLocation(Reptiles.MOD_ID, "gecko").toString()));
+    public static final RegistryObject<EntityType<GeckoEntity>> GECKO = ENTITY_TYPES.register("gecko",
+            () -> EntityType.Builder.create(GeckoEntity::new, EntityClassification.CREATURE)
+                .size(0.25F,0.25F)
+                .build(new ResourceLocation(Reptiles.MOD_ID, "gecko").toString()));
+
+
     public static final RegistryObject<EntityType<DinosaurEntity>> DINOSAUR = ENTITY_TYPES.register("dinosaur",
             () -> EntityType.Builder.create(DinosaurEntity::new, EntityClassification.MONSTER)
                     .size(1.95f, 2.3f)
