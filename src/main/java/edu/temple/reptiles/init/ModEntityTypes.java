@@ -18,6 +18,7 @@ public class ModEntityTypes {
             .register("gecko",
                     () -> EntityType.Builder.create(GeckoEntity::new, EntityClassification.CREATURE)
             .size(0.25F,0.25F).build(new ResourceLocation(Reptiles.MOD_ID, "gecko").toString()));
+
     public static final RegistryObject<EntityType<DinosaurEntity>> DINOSAUR = ENTITY_TYPES.register("dinosaur",
             () -> EntityType.Builder.create(DinosaurEntity::new, EntityClassification.MONSTER)
                     .size(1.95f, 2.3f)
@@ -31,8 +32,14 @@ public class ModEntityTypes {
         () -> EntityType.Builder.create(ChameleonEntity::new, EntityClassification.CREATURE)
                 .size(0.6f, 0.7f)
                 .build(new ResourceLocation(Reptiles.MOD_ID, "chameleon").toString()));
+
     public static final RegistryObject<EntityType<BeardedDragonEntity>> BEARDEDDRAGON = ENTITY_TYPES
             .register("beardeddragon",
                     () -> EntityType.Builder.create(BeardedDragonEntity::new, EntityClassification.CREATURE)
                             .size(0.25F,0.25F).build(new ResourceLocation(Reptiles.MOD_ID, "beardeddragon").toString()));
+
+    public static final RegistryObject<EntityType<NessieEntity>> NESSIE = ENTITY_TYPES.register("nessie",
+        () -> EntityType.Builder.create(NessieEntity::new, EntityClassification.MONSTER)
+                .size(2.0f, 2.0f)
+                .build(new ResourceLocation(Reptiles.MOD_ID, "nessie").toString()));
 }
