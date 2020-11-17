@@ -1,9 +1,8 @@
 package edu.temple.reptiles.entities;
 
-//import edu.temple.reptiles.init.ModEntityTypes;
-
 import edu.temple.reptiles.entities.ai.BaskGoal;
 import edu.temple.reptiles.init.ModEntityTypes;
+import edu.temple.reptiles.items.ReptileItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -33,7 +32,7 @@ public class BeardedDragonEntity extends TameableEntity implements IAngerable {
     public BeardedDragonEntity(EntityType<? extends TameableEntity> type, World worldIn) {
         super(type, worldIn);
     }
-    public static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.CARROT);
+    public static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.CARROT, ReptileItems.CRICKET, ReptileItems.MEAL_WORM);
 
 
 

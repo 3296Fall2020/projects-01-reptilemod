@@ -1,4 +1,7 @@
 {
+  "item.reptiles.cricket": "Cricket",
+  "item.reptiles.meal_worm": "Meal Worm",
+
   "entity.reptiles.gecko": "Gecko",
   "entity.reptiles.dinosaur": "Dinosaur",
   "entity.reptiles.crocodile": "Crocodile",
