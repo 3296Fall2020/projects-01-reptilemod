@@ -94,7 +94,6 @@ public class GeckoEntity extends ShoulderRidingEntity {
             this.goalSelector.addGoal(1, new SwimGoal(this));
             this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0D, 5.0F, 1.0F, true));
             this.goalSelector.addGoal(2, new SitGoal(this));
-            this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0D, 5.0F, 1.0F, true));
             this.goalSelector.addGoal(3, this.aiTempt);
             this.goalSelector.addGoal(3, new LandOnOwnersShoulderGoal(this));
             this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
@@ -198,7 +197,7 @@ public class GeckoEntity extends ShoulderRidingEntity {
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+   /* public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         this.setVariant(this.rand.nextInt(5));
         if (spawnDataIn == null) {
             spawnDataIn = new AgeableEntity.AgeableData();
@@ -210,6 +209,8 @@ public class GeckoEntity extends ShoulderRidingEntity {
 
 
 
+
+    */
 
     public boolean canBePushed() {
         return true;
@@ -240,7 +241,7 @@ public class GeckoEntity extends ShoulderRidingEntity {
             return super.func_230254_b_(p_230254_1_, p_230254_2_);
         }
     }
-/*
+
     static class MorningGiftGoal extends Goal {
         private final GeckoEntity gecko;
         private PlayerEntity owner;
@@ -359,7 +360,7 @@ public class GeckoEntity extends ShoulderRidingEntity {
         }
     }
 
-    */
+
 
 
     @OnlyIn(Dist.CLIENT)
