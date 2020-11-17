@@ -23,6 +23,16 @@ public class ModEntitySpawns {
             if(biome.getCategory() == Biome.Category.DESERT || biome.getCategory() == Biome.Category.MESA){
                 biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.BEARDEDDRAGON.get(), 100, 1, 2));
             }
+            if(biome.getCategory() == Biome.Category.JUNGLE || biome.getCategory() == Biome.Category.SWAMP){
+                biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.CHAMELEON.get(), 100, 1, 5));
+            }
+            if(biome.getCategory() == Biome.Category.SWAMP || biome.getCategory() == Biome.Category.RIVER){
+                biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.CROCODILE.get(), 100, 1, 2));
+            }
+            if(biome.getCategory() == Biome.Category.JUNGLE){
+                biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.GECKO.get(), 100, 2, 5));
+            }
+
         }
     }
 
