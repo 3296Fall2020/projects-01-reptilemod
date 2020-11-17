@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class Reptiles
 {
     // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "reptiles";
 
     public Reptiles() {
@@ -41,6 +41,8 @@ public class Reptiles
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
         // Register ourselves for server and other game events we are interested in
+
+        ModItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
 
         ModEntityTypes.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
         MinecraftForge.EVENT_BUS.register(this);
@@ -60,6 +62,7 @@ public class Reptiles
             GlobalEntityTypeAttributes.put(ModEntityTypes.CHAMELEON.get(), ChameleonEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.CROCODILE.get(), CrocodileEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.BEARDEDDRAGON.get(), BeardedDragonEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.NESSIE.get(), NessieEntity.setCustomAttributes().create());
         });
     }
 

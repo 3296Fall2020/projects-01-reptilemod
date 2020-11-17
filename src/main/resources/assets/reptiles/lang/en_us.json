@@ -1,7 +1,11 @@
 {
+  "item.reptiles.cricket": "Cricket",
+  "item.reptiles.meal_worm": "Meal Worm",
+
   "entity.reptiles.gecko": "Gecko",
   "entity.reptiles.dinosaur": "Dinosaur",
   "entity.reptiles.crocodile": "Crocodile",
   "entity.reptiles.chameleon": "Chameleon",
-  "entity.reptiles.beardeddragon": "Bearded Dragon"
+  "entity.reptiles.beardeddragon": "Bearded Dragon",
+  "entity.reptiles.nessie": "Nessie"
 }
