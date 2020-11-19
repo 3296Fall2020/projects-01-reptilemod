@@ -1,6 +1,13 @@
 {
   "item.reptiles.cricket": "Cricket",
   "item.reptiles.meal_worm": "Meal Worm",
+  "item.reptiles.bearded_dragon_spawn_egg": "Bearded Dragon Spawn Egg",
+  "item.reptiles.chameleon_spawn_egg": "Chameleon Spawn Egg",
+  "item.reptiles.crocodile_spawn_egg": "Crocodile Spawn Egg",
+  "item.reptiles.dinosaur_spawn_egg": "Dinosaur Spawn Egg",
+  "item.reptiles.gecko_spawn_egg": "Gecko Spawn Egg",
+  "item.reptiles.nessie_spawn_egg": "Nessie Spawn Egg",
+
 
   "entity.reptiles.gecko": "Gecko",
   "entity.reptiles.dinosaur": "Dinosaur",

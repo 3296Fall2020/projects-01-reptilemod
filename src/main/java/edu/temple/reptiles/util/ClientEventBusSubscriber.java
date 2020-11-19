@@ -3,8 +3,11 @@ package edu.temple.reptiles.util;
 import edu.temple.reptiles.Reptiles;
 import edu.temple.reptiles.client.render.*;
 import edu.temple.reptiles.init.ModEntityTypes;
+import edu.temple.reptiles.items.ModSpawnEggItem;
 import edu.temple.reptiles.util.handlers.SoundsHandler;
+import net.minecraft.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -26,6 +29,13 @@ public class ClientEventBusSubscriber {
 
     }
 
+    @SubscribeEvent
+    public static void onRegisterEntities(final RegistryEvent.Register<EntityType<?>> event){
+        //this is needed because normally minecraft registers items before entities, so if there are spawn eggs added into the game, they will throw
+        //an exception because the entities 'don't exist'.
+
+        ModSpawnEggItem.initSpawnEggs();
+    }
 //    public static void initRegistries(){
 //        SoundsHandler.registerSounds();
 //    }
