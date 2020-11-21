@@ -3,7 +3,6 @@ package edu.temple.reptiles.util;
 import edu.temple.reptiles.Reptiles;
 import edu.temple.reptiles.client.render.*;
 import edu.temple.reptiles.init.ModEntityTypes;
-import edu.temple.reptiles.util.handlers.SoundsHandler;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -24,8 +23,8 @@ public class ClientEventBusSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BEARDEDDRAGON.get(), BeardedDragonRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.NESSIE.get(), NessieRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SNAKE.get(), SnakeRenderer::new);
-
     }
+
 
 //    public static void initRegistries(){
 //        SoundsHandler.registerSounds();

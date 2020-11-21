@@ -2,13 +2,12 @@ package edu.temple.reptiles.entities;
 
 import edu.temple.reptiles.entities.ai.BaskGoal;
 import edu.temple.reptiles.init.ModEntityTypes;
-import edu.temple.reptiles.items.ReptileItems;
+import edu.temple.reptiles.items.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
@@ -32,7 +31,7 @@ public class BeardedDragonEntity extends TameableEntity implements IAngerable {
     public BeardedDragonEntity(EntityType<? extends TameableEntity> type, World worldIn) {
         super(type, worldIn);
     }
-    public static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.CARROT, ReptileItems.CRICKET, ReptileItems.MEAL_WORM);
+    public static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.CARROT, ModItems.CRICKET, ModItems.MEAL_WORM);
 
 
 
