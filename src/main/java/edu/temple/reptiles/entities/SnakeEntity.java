@@ -1,5 +1,6 @@
 package edu.temple.reptiles.entities;
 
+import edu.temple.reptiles.init.ModEntityTypes;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IAngerable;
@@ -13,6 +14,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.RangedInteger;
 import net.minecraft.util.TickRangeConverter;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import software.bernie.geckolib.animation.builder.AnimationBuilder;
 import software.bernie.geckolib.animation.controller.AnimationController;
@@ -23,9 +25,10 @@ import software.bernie.geckolib.manager.EntityAnimationManager;
 
 import java.util.UUID;
 
-public class SnakeEntity extends CreatureEntity implements IAngerable, IAnimatedEntity {
+public class SnakeEntity extends CreatureEntity implements IAngerable, IAnimatedEntity, IClimbingEntity {
     private EntityAnimationManager animManager;
     private AnimationController animController;
+    private boolean attached;
 
     private static final DataParameter<Integer> getAngerTime = EntityDataManager.createKey(SnakeEntity.class, DataSerializers.VARINT);
     private UUID target;
@@ -36,12 +39,14 @@ public class SnakeEntity extends CreatureEntity implements IAngerable, IAnimated
         this.animManager = new EntityAnimationManager();
         this.animController = new EntityAnimationController(this, "animationController", 20, this::animationPredicate);
         registerAnimationControllers();
+
+        this.attached = false;
     }
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
         return CreatureEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 10.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.15D)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2D)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 1.0D);
     }
 
@@ -49,7 +54,7 @@ public class SnakeEntity extends CreatureEntity implements IAngerable, IAnimated
     protected void registerGoals(){
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.2D));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
@@ -94,6 +99,11 @@ public class SnakeEntity extends CreatureEntity implements IAngerable, IAnimated
     }
 
     private<E extends SnakeEntity> boolean animationPredicate(AnimationTestEvent<E> event){
+//        if( this.isAttached()) {
+//            animController.setAnimation(new AnimationBuilder().addAnimation("animation.snake.climb", true));
+////            return true;
+//        }
+//        else
         if(event.isWalking()){
             animController.setAnimation(new AnimationBuilder().addAnimation("animation.snake.slither", true));
             return true;
@@ -104,4 +114,28 @@ public class SnakeEntity extends CreatureEntity implements IAngerable, IAnimated
     private void registerAnimationControllers(){
         this.animManager.addAnimationController(this.animController);
     }
+
+    @Override
+    public boolean canAttach() {
+        return !this.attached;
+    }
+
+    @Override
+    public boolean isAttached() {
+        return this.attached;
+    }
+
+    //TODO:  This logic should be shifted to SnakeBlock class when it is constructed
+    @Override
+    public void spawnCreature(World world, BlockPos pos) {
+        SnakeEntity snake = ModEntityTypes.SNAKE.get().create(world);
+        snake.setLocationAndAngles(pos.getX() + 1.0D, pos.getY(), pos.getZ(), 0F, 0F);
+        world.addEntity(snake);
+    }
+
+    @Override
+    public void setAttached(boolean in) {
+        this.attached = in;
+    }
+
 }

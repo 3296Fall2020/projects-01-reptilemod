@@ -1,7 +1,8 @@
 package edu.temple.reptiles.entities;
 
-import edu.temple.reptiles.tileentity.ClimbTileEntity;
-import net.minecraft.tileentity.TileEntityType;
+
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public interface IClimbingEntity {
 
@@ -9,7 +10,7 @@ public interface IClimbingEntity {
 
     boolean isAttached();
 
-    boolean disableAI();
+    void setAttached(boolean in);
 
-    void unrender();
+    void spawnCreature(World world, BlockPos pos);
 }

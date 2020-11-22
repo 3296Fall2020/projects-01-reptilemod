@@ -1,6 +1,29 @@
 {
-  "parent": "block/cube_all",
+  "credit": "Made with Blockbench",
   "textures": {
-    "all": "reptiles:blocks/climb_block"
-  }
+    "0": "reptiles:blocks/climb_block",
+    "particle": "reptiles:blocks/climb_block"
+  },
+  "elements": [
+    {
+      "from": [7, 4, 0],
+      "to": [9, 6, 1],
+      "rotation": {"angle": 0, "axis": "y", "origin": [7.5, 4.5, 0.5]},
+      "faces": {
+        "north": {"uv": [0, 0, 2, 2], "texture": "#0"},
+        "east": {"uv": [0, 3, 1, 5], "texture": "#0"},
+        "south": {"uv": [2, 0, 4, 2], "texture": "#0"},
+        "west": {"uv": [0, 2, 1, 4], "texture": "#0"},
+        "up": {"uv": [0, 4, 2, 5], "texture": "#0"},
+        "down": {"uv": [0, 3, 2, 4], "texture": "#0"}
+      }
+    }
+  ],
+  "groups": [
+    {
+      "name": "VoxelShapes",
+      "origin": [8, 8, 8],
+      "children": [0]
+    }
+  ]
 }

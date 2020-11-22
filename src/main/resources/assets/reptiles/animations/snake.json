@@ -306,6 +306,91 @@
 					}
 				}
 			}
+		},
+		"animation.snake.climb": {
+			"loop": true,
+			"bones": {
+				"body1": {
+					"rotation": {
+						"vector": [-90, 0, 0]
+					},
+					"position": {
+						"vector": ["-", 10.5, -3.7]
+					}
+				},
+				"body2": {
+					"rotation": {
+						"vector": [-90, 0, 0]
+					},
+					"position": {
+						"vector": [0, 9, -5.2]
+					}
+				},
+				"body3": {
+					"rotation": {
+						"vector": [-90, 0, 0]
+					},
+					"position": {
+						"vector": [0, 7.575, -6.7]
+					}
+				},
+				"body4": {
+					"rotation": {
+						"vector": [-90, 0, 0]
+					},
+					"position": {
+						"vector": [0, 6.125, -8.15]
+					}
+				},
+				"tail": {
+					"rotation": {
+						"vector": [-90, 0, 0]
+					},
+					"position": {
+						"vector": [0, 4.825, -9.575]
+					}
+				},
+				"tail2": {
+					"rotation": {
+						"vector": [-90, 0, 0]
+					},
+					"position": {
+						"vector": [0, 3.45, -11]
+					}
+				},
+				"tail3": {
+					"rotation": {
+						"vector": [-90, 0, 0]
+					},
+					"position": {
+						"vector": [0, 2.3, -12.25]
+					}
+				},
+				"tail4": {
+					"rotation": {
+						"vector": [-90, 0, 0]
+					},
+					"position": {
+						"vector": [0, 1.4, -13.325]
+					}
+				},
+				"tail5": {
+					"rotation": {
+						"vector": [-90, 0, 0]
+					},
+					"position": {
+						"vector": [0, 0.7, -14.175]
+					}
+				},
+				"head": {
+					"rotation": {
+						"vector": [-90, 0, 0]
+					},
+					"position": {
+						"vector": [0, 12, -2.4]
+					}
+				}
+			}
 		}
 	}
 }

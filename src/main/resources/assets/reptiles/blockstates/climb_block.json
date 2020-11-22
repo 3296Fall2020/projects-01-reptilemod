@@ -1,5 +1,8 @@
 {
   "variants": {
-    "": { "model":  "reptiles:block/climb_block"}
+    "facing=north": { "model": "reptiles:block/climb_block" },
+    "facing=south": { "model": "reptiles:block/climb_block", "y":  180},
+    "facing=west": { "model": "reptiles:block/climb_block", "y":  270},
+    "facing=east": { "model": "reptiles:block/climb_block", "y":  90}
   }
 }

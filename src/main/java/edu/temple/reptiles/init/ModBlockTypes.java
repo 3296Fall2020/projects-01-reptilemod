@@ -13,5 +13,5 @@ public class ModBlockTypes {
 
     public static final RegistryObject<Block> CLIMB_BLOCK = BLOCKS.register("climb_block", ClimbBlock::new);
 
-    public static final RegistryObject<Block> TANK = BLOCKS.register("tank", () -> new Block(Block.Properties.from(Blocks.GLASS)));
+//    public static final RegistryObject<Block> TANK = BLOCKS.register("tank", () -> new Block(Block.Properties.from(Blocks.GLASS)));
 }

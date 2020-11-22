@@ -8,18 +8,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 
 public class ClimbTileEntity extends TileEntity implements ITickableTileEntity {
+
     private IClimbingEntity creature;
     private int tickCount = 0;
 
     public ClimbTileEntity(){
-        super(ModTileEntityTypes.CLIMB.get());
-        this.creature = null;
+        this(ModTileEntityTypes.CLIMB.get());
     }
 
     public ClimbTileEntity(final TileEntityType<?> tileEntityType){
@@ -29,40 +28,59 @@ public class ClimbTileEntity extends TileEntity implements ITickableTileEntity {
 
     public void tick(){
         tickCount++;
-        if(tickCount % 40 == 0){
-            Reptiles.LOGGER.debug("Does this even work");
+        if(tickCount % 80 == 0){
+            if(this.world.getRandom().nextInt(5) == 1) {
+                detachCreature();
+            }
             tickCount = 0;
         }
     }
 
     public void onEntityCollision(Entity entityIn){
-        if(entityIn instanceof IClimbingEntity){
-            if(VoxelShapes.compare(VoxelShapes.create(entityIn.getCollisionBoundingBox()),
-                    VoxelShapes.create(new AxisAlignedBB(this.pos, this.pos.add(1,1,1))),
-                    IBooleanFunction.AND)){
-                if(((IClimbingEntity) entityIn).canAttach()){
-//                    attachCreature((IClimbingEntity) entityIn);
-//                    initAttach();
+        if(!this.hasCreature()) {
+            if (entityIn instanceof IClimbingEntity) {
+                Reptiles.LOGGER.debug("isClimber");
+                if (((IClimbingEntity) entityIn).canAttach()) {
+                    Reptiles.LOGGER.debug("attach");
+                    attachCreature((IClimbingEntity) entityIn);
                 }
             }
         }
     }
 
-    public IClimbingEntity attachCreature(IClimbingEntity entity){
+    public void attachCreature(IClimbingEntity entity){
+        entity.setAttached(true);
         if(this.creature == null)
             this.creature = entity;
-            initAttach();
-        return this.creature;
-    }
-
-    private void initAttach(){
-        this.creature.disableAI();
-        this.creature.unrender();
+            ((Entity) entity).remove(true);
     }
 
     public IClimbingEntity getCreature() {
         return creature;
     }
+
+    public void spawnCreature(World world, BlockPos pos){
+        this.creature.spawnCreature(world, pos);
+    }
+
+    public boolean hasCreature(){
+        return this.creature != null;
+    }
+
+    public void detachCreature(){
+        if(this.hasCreature()) {
+            this.creature.setAttached(false);
+            this.spawnCreature(this.world, this.getPos());
+            this.creature = null;
+        }
+    }
+
+    @Override
+    public void remove(){
+        super.remove();
+        detachCreature();
+    }
+
 
     //    public void read(BlockState state, CompoundNBT nbt){
 //        super.read(state, nbt);
