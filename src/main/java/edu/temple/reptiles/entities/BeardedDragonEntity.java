@@ -8,8 +8,10 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -19,10 +21,19 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animation.builder.AnimationBuilder;
+import software.bernie.geckolib.animation.controller.AnimationController;
+import software.bernie.geckolib.animation.controller.EntityAnimationController;
+import software.bernie.geckolib.entity.IAnimatedEntity;
+import software.bernie.geckolib.event.AnimationTestEvent;
+import software.bernie.geckolib.manager.EntityAnimationManager;
 
 import java.util.UUID;
 
-public class BeardedDragonEntity extends TameableEntity implements IAngerable {
+public class BeardedDragonEntity extends TameableEntity implements IAngerable, IAnimatedEntity {
+
+    private EntityAnimationManager manager = new EntityAnimationManager();
+    private AnimationController controller = new EntityAnimationController(this, "moveController", 28, this::animationPredicate);
 
     private static final DataParameter<Integer> getAngerTime = EntityDataManager.createKey(BeardedDragonEntity.class, DataSerializers.VARINT);
     private UUID target;
@@ -31,6 +42,7 @@ public class BeardedDragonEntity extends TameableEntity implements IAngerable {
 
     public BeardedDragonEntity(EntityType<? extends TameableEntity> type, World worldIn) {
         super(type, worldIn);
+        registerAnimationController();
     }
     public static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.CARROT, ReptileItems.CRICKET, ReptileItems.MEAL_WORM);
 
@@ -39,28 +51,35 @@ public class BeardedDragonEntity extends TameableEntity implements IAngerable {
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
         return MobEntity.registerAttributes()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 10.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.15D)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 10.0F)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, (double)0.3F)
                 .createMutableAttribute(Attributes.FOLLOW_RANGE)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 2D)
                 .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 2D)
-                .createMutableAttribute(Attributes.ATTACK_SPEED, 1.5F);
+                .createMutableAttribute(Attributes.ATTACK_SPEED, 2.0F);
     }
 
     @Override
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        //this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
-        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
+        //this.goalSelector.addGoal(1, new BreedGoal(this, 1.0D));
+        this.goalSelector.addGoal(2, new LeapAtTargetGoal(this, 0.4F));
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(5, new beardedDragonBaskGoal(this));
         this.goalSelector.addGoal(4, new TemptGoal(this, 1.1D, TEMPTATION_ITEMS, false));
         this.goalSelector.addGoal(6, new FollowParentGoal(this, 1.1D));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10 , true, false, this::func_233680_b_));
+        this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
+        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setCallsForHelp());
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::func_233680_b_));
+      //  this.targetSelector.addGoal(5, new NonTamedTargetGoal<>(this, AnimalEntity.class, false, TARGET_ENTITIES));
+        this.targetSelector.addGoal(6, new NonTamedTargetGoal<>(this, TurtleEntity.class, false, TurtleEntity.TARGET_DRY_BABY));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, false));
+        this.targetSelector.addGoal(8, new ResetAngerGoal<>(this, true));
 
 
 
@@ -125,11 +144,32 @@ public class BeardedDragonEntity extends TameableEntity implements IAngerable {
         this.setAngerTime(rangedInteger.func_233018_a_(this.rand));
     }
 
+    @Override
+    public EntityAnimationManager getAnimationManager() {
+        return manager;
+    }
+
+    private <E extends BeardedDragonEntity> boolean animationPredicate(AnimationTestEvent<E> event){
+        if(event.isWalking()){
+            controller.setAnimation(new AnimationBuilder().addAnimation("animation.reptiles.walk", true));
+            return true;
+        }
+        else{
+            controller.setAnimation(new AnimationBuilder().addAnimation("animation.reptiles.idle", true));
+            return true;
+        }
+    }
+    private void registerAnimationController(){
+        manager.addAnimationController(controller);
+    }
+
+
     private class beardedDragonBaskGoal extends BaskGoal{
 
         public beardedDragonBaskGoal(CreatureEntity creatureIn) {
             super(creatureIn);
         }
     }
+
 }
 

@@ -42,7 +42,7 @@ public class ModEntityTypes {
     public static final RegistryObject<EntityType<BeardedDragonEntity>> BEARDEDDRAGON = ENTITY_TYPES
             .register("beardeddragon",
                     () -> EntityType.Builder.create(BeardedDragonEntity::new, EntityClassification.CREATURE)
-                            .size(0.25F,0.25F).build(new ResourceLocation(Reptiles.MOD_ID, "beardeddragon").toString()));
+                            .size(1.0F,0.4F).build(new ResourceLocation(Reptiles.MOD_ID, "beardeddragon").toString()));
 
     public static final RegistryObject<EntityType<NessieEntity>> NESSIE = ENTITY_TYPES.register("nessie",
         () -> EntityType.Builder.create(NessieEntity::new, EntityClassification.MONSTER)
