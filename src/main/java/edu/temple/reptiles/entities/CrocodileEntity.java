@@ -1,6 +1,7 @@
 package edu.temple.reptiles.entities;
 
 import edu.temple.reptiles.Reptiles;
+import edu.temple.reptiles.client.model.CrocodileModel;
 import edu.temple.reptiles.entities.ai.BaskGoal;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
@@ -22,14 +23,28 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animation.builder.AnimationBuilder;
+import software.bernie.geckolib.animation.controller.AnimationController;
+import software.bernie.geckolib.animation.controller.EntityAnimationController;
+import software.bernie.geckolib.entity.IAnimatedEntity;
+import software.bernie.geckolib.event.AnimationTestEvent;
+import software.bernie.geckolib.manager.EntityAnimationManager;
 
 import java.util.EnumSet;
 
-public class CrocodileEntity extends MonsterEntity {
+public class CrocodileEntity extends MonsterEntity implements IAnimatedEntity {
+    private EntityAnimationManager animManager;
+    private AnimationController animMoveController;
+    private AnimationController animActionController;
+    private boolean basking;
 
     public CrocodileEntity(EntityType<? extends MonsterEntity> type, World worldIn){
         super(type, worldIn);
         this.moveController = new CrocodileEntity.MoveHelperController(this);
+        this.animManager = new EntityAnimationManager();
+        this.animMoveController = new EntityAnimationController(this, "moveAnimationController", 20, this::moveAnimationPredicate);
+        this.animActionController = new EntityAnimationController(this, "actionAnimationController", 20, this::actionAnimationPredicate);
+        registerAnimationControllers();
     }
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
@@ -69,6 +84,38 @@ public class CrocodileEntity extends MonsterEntity {
     @Override
     protected PathNavigator createNavigator(World worldIn) {
         return new CrocodileEntity.Navigator(this, worldIn);
+    }
+
+    @Override
+    public EntityAnimationManager getAnimationManager() {
+        return this.animManager;
+    }
+
+    private<E extends CrocodileEntity> boolean moveAnimationPredicate(AnimationTestEvent<E> event){
+        if(this.isInWater()){
+            animMoveController.setAnimation(new AnimationBuilder().addAnimation("animation.crocodile.swim", true));
+            return true;
+        }
+        return false;
+    }
+
+    private<E extends CrocodileEntity> boolean actionAnimationPredicate(AnimationTestEvent<E> event){
+        if(this.basking){
+            animActionController.setAnimation(new AnimationBuilder().addAnimation("animation.crocodile.bask"));
+            return true;
+        }
+        return false;
+    }
+
+    private void registerAnimationControllers(){
+        this.animManager.addAnimationController(this.animMoveController);
+        this.animManager.addAnimationController(this.animActionController);
+    }
+
+
+
+    public void setBask(boolean in){
+        this.basking = in;
     }
 
     private class MoveHelperController extends MovementController{
@@ -138,16 +185,26 @@ public class CrocodileEntity extends MonsterEntity {
     }
 
     static class CrocBaskGoal extends BaskGoal{
+        private final CrocodileEntity croc;
 
         CrocBaskGoal(CrocodileEntity crocIn){
             super(crocIn);
+            this.croc = crocIn;
         }
 
         @Override
         public void baskAction(){
             // TODO: Add a pose or animation
             // Temporary visual indicator that the goal is occurring
-            this.creature.getLookController().setLookPosition(this.creature.getPosX() + 1.0D, this.creature.getPosYEye() + 1.0D, this.creature.getPosZ() + 1.0D);
+//            this.creature.getLookController().setLookPosition(this.creature.getPosX() + 1.0D, this.creature.getPosYEye() + 1.0D, this.creature.getPosZ() + 1.0D);
+            this.croc.setBask(true);
+            Reptiles.LOGGER.debug("Triggering bask anim");
+        }
+
+        @Override
+        public void resetTask(){
+            Reptiles.LOGGER.debug("Ending Bask");
+            this.croc.setBask(false);
         }
     }
 

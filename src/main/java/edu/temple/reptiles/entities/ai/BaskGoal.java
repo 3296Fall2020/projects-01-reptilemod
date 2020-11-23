@@ -7,9 +7,11 @@ import net.minecraft.world.IWorldReader;
 
 public abstract class BaskGoal extends MoveToBlockGoal {
     private int maxStayTicks;
+    private int tickCount;
 
     public BaskGoal(CreatureEntity creatureIn){
         super(creatureIn, 1.0D, 2);
+        this.tickCount = 0;
     }
 
     @Override
@@ -32,7 +34,11 @@ public abstract class BaskGoal extends MoveToBlockGoal {
 
     @Override
     public void tick(){
-        baskAction();
+        if(tickCount % 40 == 0) {
+            baskAction();
+            tickCount = 0;
+        }
+        tickCount++;
         super.tick();
 
     }
