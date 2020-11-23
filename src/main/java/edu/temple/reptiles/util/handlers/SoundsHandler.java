@@ -14,6 +14,8 @@ public class SoundsHandler {
 
     public static void registerSounds(){
         ENTITY_DINOSAUR_AMBIENT = registerSound("entity.dinosaur.ambient");
+        ENTITY_DINOSAUR_HURT = registerSound("entity.dinosaur.hurt");
+        ENTITY_DINOSAUR_DEATH = registerSound("entity.dinosaur.death");
     }
 
     public static SoundEvent registerSound(String name){

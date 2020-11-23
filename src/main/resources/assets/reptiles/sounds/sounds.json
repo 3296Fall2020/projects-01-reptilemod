@@ -1,0 +1,22 @@
+{
+  "entity.dinosaur.ambient":
+  {
+    "category": "entity",
+    "subtitle": "entity.dinosaur.ambient",
+    "sounds": [{"name":  "reptiles:sounds/ambient.ogg"}]
+  },
+
+  "entity.dinosaur.hurt":
+  {
+    "category": "entity",
+    "subtitle": "entity.dinosaur.hurt",
+    "sounds": [{"name":  "reptiles:sounds/hurt.ogg"}]
+  },
+
+  "entity.dinosaur.death":
+  {
+    "category": "entity",
+    "subtitle": "entity.dinosaur.death",
+    "sounds": [{"name":  "reptiles:sounds/death.ogg"}]
+  }
+}

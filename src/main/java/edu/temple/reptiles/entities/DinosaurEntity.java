@@ -2,6 +2,7 @@ package edu.temple.reptiles.entities;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
@@ -11,12 +12,27 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.LightType;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animation.builder.AnimationBuilder;
+import software.bernie.geckolib.animation.controller.AnimationController;
+import software.bernie.geckolib.animation.controller.EntityAnimationController;
+import software.bernie.geckolib.entity.IAnimatedEntity;
+import software.bernie.geckolib.event.AnimationTestEvent;
+import software.bernie.geckolib.manager.EntityAnimationManager;
 
-public class DinosaurEntity extends MonsterEntity {
+import java.util.Random;
+
+public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
+    private EntityAnimationManager manager;
+    private AnimationController controller;
 
     public DinosaurEntity(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
+        this.manager = new EntityAnimationManager();
+        this.controller = new EntityAnimationController(this, "animationController", 20, this::animationPredicate);
+        registerAnimationControllers();
     }
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
@@ -28,6 +44,23 @@ public class DinosaurEntity extends MonsterEntity {
                 .createMutableAttribute(Attributes.ARMOR, 3.0D)
                 .createMutableAttribute(Attributes.ARMOR_TOUGHNESS, 1.0D)
                 .createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D);
+    }
+
+    public EntityAnimationManager getAnimationManager(){
+        return this.manager;
+    }
+
+    private<E extends DinosaurEntity> boolean animationPredicate(AnimationTestEvent<E> event){
+        if(this.onGround){
+            controller.setAnimation(new AnimationBuilder().addAnimation("tail", true));
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    private void registerAnimationControllers(){
+        this.manager.addAnimationController(this.controller);
     }
 
     @Override
@@ -46,6 +79,16 @@ public class DinosaurEntity extends MonsterEntity {
     protected void playStepSound(BlockPos pos, BlockState blockIn) {
         this.playSound(SoundEvents.ENTITY_RAVAGER_STEP, 0.15f, 1.0F);
     }
+
+//    @Override
+//    public static boolean isValidLightLevel(IWorld worldIn, BlockPos pos, Random randomIn) {
+//        if (worldIn.getLightFor(LightType.SKY, pos) > randomIn.nextInt(32)) {
+//            return false;
+//        } else {
+//            int i = worldIn.getWorld().isThundering() ? worldIn.getNeighborAwareLightSubtracted(pos, 10) : worldIn.getLight(pos);
+//            return i <= randomIn.nextInt(8);
+//        }
+//    }
 
     @Override
     protected void registerGoals() {
