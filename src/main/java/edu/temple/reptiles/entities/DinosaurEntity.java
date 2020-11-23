@@ -43,7 +43,7 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
     public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
         return MonsterEntity.func_234295_eP_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 40.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.20D)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.5D)
                 .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.0D)
                 .createMutableAttribute(Attributes.ARMOR, 3.0D)
