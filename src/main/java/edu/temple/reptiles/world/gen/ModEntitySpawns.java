@@ -32,6 +32,9 @@ public class ModEntitySpawns {
             if(biome.getCategory() == Biome.Category.JUNGLE){
                 biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.GECKO.get(), 100, 2, 5));
             }
+            if(biome.getCategory() == Biome.Category.SWAMP || biome.getCategory() == Biome.Category.JUNGLE || biome.getCategory() == Biome.Category.DESERT){
+                biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.SNAKE.get(), 100, 1, 1));
+            }
 
         }
     }

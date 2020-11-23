@@ -41,15 +41,16 @@ public class SnakeEntity extends CreatureEntity implements IAngerable, IAnimated
     public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
         return CreatureEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 10.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.05D)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.2D)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 1.0D);
     }
 
     @Override
     protected void registerGoals(){
-        super.registerGoals();;
-        this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
-        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.2D, false));
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new SwimGoal(this));
+        this.goalSelector.addGoal(2, new PanicGoal(this, 1.25D));
+        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
 
@@ -94,7 +95,7 @@ public class SnakeEntity extends CreatureEntity implements IAngerable, IAnimated
     }
 
     private<E extends SnakeEntity> boolean animationPredicate(AnimationTestEvent<E> event){
-        if(this.isOnGround()){
+        if(event.isWalking()){
             animController.setAnimation(new AnimationBuilder().addAnimation("animation.snake.slither", true));
             return true;
         }
