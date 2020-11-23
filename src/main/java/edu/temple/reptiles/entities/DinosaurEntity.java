@@ -21,12 +21,17 @@ import software.bernie.geckolib.animation.controller.EntityAnimationController;
 import software.bernie.geckolib.entity.IAnimatedEntity;
 import software.bernie.geckolib.event.AnimationTestEvent;
 import software.bernie.geckolib.manager.EntityAnimationManager;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 
 import java.util.Random;
 
 public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
     private EntityAnimationManager manager;
     private AnimationController controller;
+    private AnimationController biteController = new EntityAnimationController(this, "biteController", 10, this::biteControllerAnim);
+    private AnimationController legController = new EntityAnimationController(this, "legController", 10, this::legControllerAnim);
+
 
     public DinosaurEntity(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
@@ -52,15 +57,37 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
 
     private<E extends DinosaurEntity> boolean animationPredicate(AnimationTestEvent<E> event){
         if(this.onGround){
-            controller.setAnimation(new AnimationBuilder().addAnimation("tail", true));
+            controller.setAnimation(new AnimationBuilder().addAnimation("animation.dinosaur.tail", true));
             return true;
         } else{
             return false;
         }
     }
 
+    private<E extends DinosaurEntity> boolean biteControllerAnim(AnimationTestEvent<E> event){
+        if(this.hurtTime > 0){
+            biteController.setAnimation(new AnimationBuilder().addAnimation("animation.dinosaur.bite", true));
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    private<E extends DinosaurEntity> boolean legControllerAnim(AnimationTestEvent<E> event){
+
+        if(this.isAggressive()){
+            legController.setAnimation(new AnimationBuilder().addAnimation("animation.dinosaur.preAttack", true));
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+
     private void registerAnimationControllers(){
+
         this.manager.addAnimationController(this.controller);
+        this.manager.addAnimationController(this.legController);
     }
 
     @Override

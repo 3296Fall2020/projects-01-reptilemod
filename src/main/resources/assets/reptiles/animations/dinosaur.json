@@ -47,7 +47,7 @@
 				}
 			}
 		},
-		"tail": {
+		"animation.dinosaur.tail": {
 			"animation_length": 6.88,
 			"bones": {
 				"tail": {
