@@ -1,7 +1,7 @@
 package edu.temple.reptiles.entities;
 
 import edu.temple.reptiles.init.SoundInit;
-import edu.temple.reptiles.util.handlers.SoundsHandler;
+//import edu.temple.reptiles.util.handlers.SoundsHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -109,15 +109,6 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
         this.playSound(SoundEvents.ENTITY_RAVAGER_STEP, 0.15f, 1.0F);
     }
 
-//    @Override
-//    public static boolean isValidLightLevel(IWorld worldIn, BlockPos pos, Random randomIn) {
-//        if (worldIn.getLightFor(LightType.SKY, pos) > randomIn.nextInt(32)) {
-//            return false;
-//        } else {
-//            int i = worldIn.getWorld().isThundering() ? worldIn.getNeighborAwareLightSubtracted(pos, 10) : worldIn.getLight(pos);
-//            return i <= randomIn.nextInt(8);
-//        }
-//    }
 
     @Override
     protected void registerGoals() {
@@ -127,7 +118,6 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
         this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.2D, false));
-        //this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.5F));
 
         this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));

@@ -12,7 +12,7 @@ public class SoundInit {
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Reptiles.MOD_ID);
 
     public static final RegistryObject<SoundEvent> ENTITY_DINOSAUR_AMBIENT = SOUNDS.register("entity.dinosaur.ambient",
-            () -> new SoundEvent(new ResourceLocation(Reptiles.MOD_ID, "entity.dinosaur.hurt")));
+            () -> new SoundEvent(new ResourceLocation(Reptiles.MOD_ID, "entity.dinosaur.ambient")));
     public static final RegistryObject<SoundEvent> ENTITY_DINOSAUR_HURT = SOUNDS.register("entity.dinosaur.hurt",
             () -> new SoundEvent(new ResourceLocation(Reptiles.MOD_ID, "entity.dinosaur.hurt")));
     public static final RegistryObject<SoundEvent> ENTITY_DINOSAUR_DEATH = SOUNDS.register("entity.dinosaur.death",
