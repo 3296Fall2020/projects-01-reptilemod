@@ -1,6 +1,5 @@
 package edu.temple.reptiles.world.gen;
 
-import com.google.common.eventbus.Subscribe;
 import edu.temple.reptiles.Reptiles;
 import edu.temple.reptiles.init.ModEntityTypes;
 import net.minecraft.entity.EntityClassification;
@@ -36,23 +35,4 @@ public class ModEntitySpawns {
         }
     }
 
-
-
 }
-
-
-//    EntitySpawnPlacementRegistry.register(DINOSAUR, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::func_223325_c());
-//
-//    public static void registerEntityWorldSpawns()
-//    {
-//        registerEntityWorldSpawn(DINOSAUR, 10, 1, 6, Biomes.DESERT, Biomes.PLAINS, Biomes.SAVANNA);
-//    }
-//
-//    public static void registerEntityWorldSpawn(EntityType<?> entity, int weight, int min, int max, Biome... biomes)
-//    {
-//        for(Biome biome : biomes) {
-//            if (biome != null) {
-//                biome.getSpawns(entity.getClassification()).add(new Biome.SpawnListEntry(entity, weight, min, max));
-//            }
-//        }
-//    }

@@ -1,10 +1,8 @@
 package edu.temple.reptiles.entities;
 
 import edu.temple.reptiles.init.SoundInit;
-//import edu.temple.reptiles.util.handlers.SoundsHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
@@ -14,8 +12,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import software.bernie.geckolib.animation.builder.AnimationBuilder;
 import software.bernie.geckolib.animation.controller.AnimationController;
@@ -23,14 +19,11 @@ import software.bernie.geckolib.animation.controller.EntityAnimationController;
 import software.bernie.geckolib.entity.IAnimatedEntity;
 import software.bernie.geckolib.event.AnimationTestEvent;
 import software.bernie.geckolib.manager.EntityAnimationManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 
-import java.util.Random;
 
 public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
     private EntityAnimationManager manager;
-    private AnimationController controller;
+    private AnimationController controller = new EntityAnimationController(this, "animationController", 20, this::animationPredicate);
     private AnimationController biteController = new EntityAnimationController(this, "biteController", 10, this::biteControllerAnim);
     private AnimationController legController = new EntityAnimationController(this, "legController", 10, this::legControllerAnim);
 
@@ -38,7 +31,6 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
     public DinosaurEntity(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
         this.manager = new EntityAnimationManager();
-        this.controller = new EntityAnimationController(this, "animationController", 20, this::animationPredicate);
         registerAnimationControllers();
     }
 

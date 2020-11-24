@@ -1,18 +1,10 @@
 package edu.temple.reptiles.client.model;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import edu.temple.reptiles.entities.DinosaurEntity;
-import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.client.renderer.entity.model.QuadrupedModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib.animation.model.AnimatedEntityModel;
 import software.bernie.geckolib.animation.render.AnimatedModelRenderer;
 import edu.temple.reptiles.Reptiles;
-
-import javax.swing.text.html.parser.Entity;
 
 public class DinosaurModel<T extends DinosaurEntity> extends AnimatedEntityModel<T> {
 
@@ -144,36 +136,6 @@ public class DinosaurModel<T extends DinosaurEntity> extends AnimatedEntityModel
     {
         return new ResourceLocation(Reptiles.MOD_ID, "animations/dinosaur.json");
     }
-
-//    @Override
-//    public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-//        this.head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
-//        this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-//        this.body.rotateAngleX = ((float)Math.PI / 2F);
-//        this.leg0.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-//        this.leg1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-//        this.leg2.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-//        this.leg3.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-//    }
-
-
-//    @Override
-//    public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-//        body.render(matrixStack, buffer, packedLight, packedOverlay);
-//        neck.render(matrixStack, buffer, packedLight, packedOverlay);
-//        leg0.render(matrixStack, buffer, packedLight, packedOverlay);
-//        leg1.render(matrixStack, buffer, packedLight, packedOverlay);
-//        leg2.render(matrixStack, buffer, packedLight, packedOverlay);
-//        leg3.render(matrixStack, buffer, packedLight, packedOverlay);
-//        tail.render(matrixStack, buffer, packedLight, packedOverlay);
-//    }
-
-//    public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-//        modelRenderer.rotateAngleX = x;
-//        modelRenderer.rotateAngleY = y;
-//        modelRenderer.rotateAngleZ = z;
-//    }
-
 
 
 }
