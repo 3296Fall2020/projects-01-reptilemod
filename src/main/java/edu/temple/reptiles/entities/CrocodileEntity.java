@@ -1,7 +1,6 @@
 package edu.temple.reptiles.entities;
 
 import edu.temple.reptiles.Reptiles;
-import edu.temple.reptiles.client.model.CrocodileModel;
 import edu.temple.reptiles.entities.ai.BaskGoal;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
@@ -14,6 +13,9 @@ import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathFinder;
 import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.pathfinding.SwimmerPathNavigator;
@@ -34,17 +36,16 @@ import java.util.EnumSet;
 
 public class CrocodileEntity extends MonsterEntity implements IAnimatedEntity {
     private EntityAnimationManager animManager;
-    private AnimationController animMoveController;
-    private AnimationController animActionController;
-    private boolean basking;
+    private AnimationController animController;
+    private static final DataParameter<Boolean> BASKING;
 
     public CrocodileEntity(EntityType<? extends MonsterEntity> type, World worldIn){
         super(type, worldIn);
         this.moveController = new CrocodileEntity.MoveHelperController(this);
         this.animManager = new EntityAnimationManager();
-        this.animMoveController = new EntityAnimationController(this, "moveAnimationController", 20, this::moveAnimationPredicate);
-        this.animActionController = new EntityAnimationController(this, "actionAnimationController", 20, this::actionAnimationPredicate);
+        this.animController = new EntityAnimationController(this, "moveAnimationController", 20, this::moveAnimationPredicate);
         registerAnimationControllers();
+        this.setBask(false);
     }
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
@@ -93,29 +94,43 @@ public class CrocodileEntity extends MonsterEntity implements IAnimatedEntity {
 
     private<E extends CrocodileEntity> boolean moveAnimationPredicate(AnimationTestEvent<E> event){
         if(this.isInWater()){
-            animMoveController.setAnimation(new AnimationBuilder().addAnimation("animation.crocodile.swim", true));
+            animController.setAnimation(new AnimationBuilder().addAnimation("animation.crocodile.swim", true));
+            return true;
+        }
+        else if(this.getBask()){
+            animController.setAnimation(new AnimationBuilder().addAnimation("animation.crocodile.bask"));
+            return true;
+        }
+        else if(this.isAggressive()){
+            animController.setAnimation(new AnimationBuilder().addAnimation("animation.crocodile.bite", true));
+            return true;
+        }
+        else if(event.isWalking() && this.isOnGround()){
+            animController.setAnimation(new AnimationBuilder().addAnimation("animation.crocodile.walk", true));
             return true;
         }
         return false;
     }
 
-    private<E extends CrocodileEntity> boolean actionAnimationPredicate(AnimationTestEvent<E> event){
-        if(this.basking){
-            animActionController.setAnimation(new AnimationBuilder().addAnimation("animation.crocodile.bask"));
-            return true;
-        }
-        return false;
-    }
+
 
     private void registerAnimationControllers(){
-        this.animManager.addAnimationController(this.animMoveController);
-        this.animManager.addAnimationController(this.animActionController);
+        this.animManager.addAnimationController(this.animController);
     }
 
-
+    @Override
+    protected void registerData(){
+        super.registerData();
+        this.dataManager.register(BASKING, false);
+    }
 
     public void setBask(boolean in){
-        this.basking = in;
+        this.dataManager.set(BASKING, in);
+    }
+    public boolean getBask(){return this.dataManager.get(BASKING);}
+
+    static{
+        BASKING = EntityDataManager.createKey(CrocodileEntity.class, DataSerializers.BOOLEAN);
     }
 
     private class MoveHelperController extends MovementController{
@@ -194,16 +209,13 @@ public class CrocodileEntity extends MonsterEntity implements IAnimatedEntity {
 
         @Override
         public void baskAction(){
-            // TODO: Add a pose or animation
-            // Temporary visual indicator that the goal is occurring
-//            this.creature.getLookController().setLookPosition(this.creature.getPosX() + 1.0D, this.creature.getPosYEye() + 1.0D, this.creature.getPosZ() + 1.0D);
+//            Reptiles.LOGGER.debug("Triggering bask anim");
             this.croc.setBask(true);
-            Reptiles.LOGGER.debug("Triggering bask anim");
         }
 
         @Override
         public void resetTask(){
-            Reptiles.LOGGER.debug("Ending Bask");
+//            Reptiles.LOGGER.debug("Ending Bask");
             this.croc.setBask(false);
         }
     }
