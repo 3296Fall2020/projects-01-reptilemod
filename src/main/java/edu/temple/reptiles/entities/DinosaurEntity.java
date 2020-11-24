@@ -1,5 +1,7 @@
 package edu.temple.reptiles.entities;
 
+import edu.temple.reptiles.init.SoundInit;
+import edu.temple.reptiles.util.handlers.SoundsHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -96,11 +98,11 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
     }
 
     @Override
-    protected SoundEvent getAmbientSound() { return SoundEvents.ENTITY_RAVAGER_AMBIENT; }
+    protected SoundEvent getAmbientSound() { return SoundInit.ENTITY_DINOSAUR_AMBIENT.get(); }
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) { return SoundEvents.ENTITY_RAVAGER_HURT; }
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) { return SoundInit.ENTITY_DINOSAUR_HURT.get(); }
     @Override
-    protected SoundEvent getDeathSound() { return SoundEvents.ENTITY_RAVAGER_DEATH; }
+    protected SoundEvent getDeathSound() { return SoundInit.ENTITY_DINOSAUR_DEATH.get(); }
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState blockIn) {

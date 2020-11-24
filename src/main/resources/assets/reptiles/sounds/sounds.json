@@ -3,20 +3,21 @@
   {
     "category": "entity",
     "subtitle": "entity.dinosaur.ambient",
-    "sounds": [{"name":  "reptiles:sounds/ambient.ogg"}]
+    "sounds": [{"name":  "reptiles:sounds/ambient", "stream": true}]
   },
 
   "entity.dinosaur.hurt":
   {
     "category": "entity",
     "subtitle": "entity.dinosaur.hurt",
-    "sounds": [{"name":  "reptiles:sounds/hurt.ogg"}]
+    "sounds": [{"name":  "reptiles:sounds/hurt",
+    "stream": true}]
   },
 
   "entity.dinosaur.death":
   {
     "category": "entity",
     "subtitle": "entity.dinosaur.death",
-    "sounds": [{"name":  "reptiles:sounds/death.ogg"}]
+    "sounds": [{"name":  "reptiles:sounds/death", "stream": true}]
   }
 }
