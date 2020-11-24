@@ -3,6 +3,7 @@ package edu.temple.reptiles.entities;
 import edu.temple.reptiles.init.SoundInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
@@ -12,6 +13,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import software.bernie.geckolib.animation.builder.AnimationBuilder;
 import software.bernie.geckolib.animation.controller.AnimationController;
@@ -115,5 +117,10 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(2, new LeapAtTargetGoal(this, 0.5F));
 
+    }
+
+    @Override
+    public boolean canSpawn(IWorld worldIn, SpawnReason spawnReasonIn) {
+        return true;
     }
 }
