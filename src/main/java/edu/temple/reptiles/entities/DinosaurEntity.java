@@ -38,12 +38,12 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
         return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 40.0D)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 37.0D)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.20D)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.5D)
                 .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.0D)
                 .createMutableAttribute(Attributes.ARMOR, 3.0D)
-                .createMutableAttribute(Attributes.ARMOR_TOUGHNESS, 1.0D)
+                .createMutableAttribute(Attributes.ARMOR_TOUGHNESS, 0.7D)
                 .createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D);
     }
 
@@ -115,7 +115,7 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
 
         this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.addGoal(2, new LeapAtTargetGoal(this, 0.5F));
+        this.targetSelector.addGoal(2, new LeapAtTargetGoal(this, 0.4F));
 
     }
 
