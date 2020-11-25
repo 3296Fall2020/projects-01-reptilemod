@@ -16,8 +16,8 @@ public enum ModArmorMaterial implements IArmorMaterial {
 
     // scale_layer_1 scale_layer_2
     SCALE(Reptiles.MOD_ID + ":scale", 24, new int[] {3, 5, 6, 3}, 14,
-            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0.5f,
-            () -> { return Ingredient.fromItems(ModItems.SCALE.get());}, 1.0f);
+            SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, 0f,
+            () -> { return Ingredient.fromItems(ModItems.SCALE.get());}, .05f);
 
     private static final int[] MAX_DAMAGE_ARRAY = new int[] {11, 16, 15, 13};
     private final String name;
