@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 
-public class ChameleonRenderer extends MobRenderer<ChameleonEntity, ChameleonModel<ChameleonEntity>> {
+public class ChameleonRenderer extends MobRenderer<ChameleonEntity, ChameleonModel> {
 
     protected static ResourceLocation TEXTURE;
 
@@ -24,7 +24,7 @@ public class ChameleonRenderer extends MobRenderer<ChameleonEntity, ChameleonMod
             new ResourceLocation(Reptiles.MOD_ID, "textures/entity/chameleon/swimming_chameleon.png");
 
     public ChameleonRenderer(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new ChameleonModel<>(), 0.3f);
+        super(renderManagerIn, new ChameleonModel(), 0.3f);
     }
 
     @Override
