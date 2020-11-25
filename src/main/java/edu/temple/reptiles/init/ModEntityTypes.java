@@ -48,5 +48,10 @@ public class ModEntityTypes {
         () -> EntityType.Builder.create(NessieEntity::new, EntityClassification.MONSTER)
                 .size(2.0f, 2.0f)
                 .build(new ResourceLocation(Reptiles.MOD_ID, "nessie").toString()));
+
+    public static final RegistryObject<EntityType<GilaMonsterEntity>> GILA_MONSTER = ENTITY_TYPES.register("gila_monster",
+            () -> EntityType.Builder.create(GilaMonsterEntity::new, EntityClassification.CREATURE)
+            .size(1.0f, 1.0f)
+            .build(new ResourceLocation(Reptiles.MOD_ID, "gila_monster").toString()));
 }
 
