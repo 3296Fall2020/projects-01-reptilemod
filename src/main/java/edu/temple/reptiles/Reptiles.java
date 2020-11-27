@@ -43,7 +43,7 @@ public class Reptiles
         // Register ourselves for server and other game events we are interested in
 
         ModItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
-
+        ModBlockTypes.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ModEntityTypes.ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
         MinecraftForge.EVENT_BUS.register(this);
 
