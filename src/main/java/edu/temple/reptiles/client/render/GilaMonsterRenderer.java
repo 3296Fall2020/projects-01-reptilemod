@@ -7,12 +7,12 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 
-public class GilaMonsterRenderer extends MobRenderer<GilaMonsterEntity, GilaMonsterModel<GilaMonsterEntity>> {
+public class GilaMonsterRenderer extends MobRenderer<GilaMonsterEntity, GilaMonsterModel> {
 
     protected static final ResourceLocation TEXTURE = new ResourceLocation(Reptiles.MOD_ID, "textures/entity/gila_monster.png");
 
     public GilaMonsterRenderer(EntityRendererManager renderManagerIn){
-        super(renderManagerIn, new GilaMonsterModel<>(), 0.0f);
+        super(renderManagerIn, new GilaMonsterModel(), 0.0f);
     }
 
     @Override
