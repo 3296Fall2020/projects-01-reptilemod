@@ -4,6 +4,7 @@ import edu.temple.reptiles.Reptiles;
 import edu.temple.reptiles.entities.ai.BaskGoal;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.MovementController;
@@ -23,6 +24,7 @@ import net.minecraft.pathfinding.WalkAndSwimNodeProcessor;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import software.bernie.geckolib.animation.builder.AnimationBuilder;
@@ -80,6 +82,11 @@ public class CrocodileEntity extends MonsterEntity implements IAnimatedEntity {
     @Override
     protected int getExperiencePoints(PlayerEntity player){
         return 1 + this.world.rand.nextInt(4);
+    }
+
+    @Override
+    public boolean canSpawn(IWorld worldIn, SpawnReason spawnReasonIn){
+        return true;
     }
 
     @Override
