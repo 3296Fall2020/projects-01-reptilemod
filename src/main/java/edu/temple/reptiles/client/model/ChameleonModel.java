@@ -1,112 +1,90 @@
 package edu.temple.reptiles.client.model;
 
-
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.math.MathHelper;
-// Made with Blockbench 3.6.6
-// Exported for Minecraft version 1.12.2 or 1.15.2 (same format for both) for entity models animated with GeckoLib
-// Paste this class into your mod and follow the documentation for GeckoLib to use animations. You can find the documentation here: https://github.com/bernie-g/geckolib
-// Blockbench plugin created by Gecko
-
-import net.minecraft.util.ResourceLocation;
-import software.bernie.geckolib.animation.model.AnimatedEntityModel;
-import software.bernie.geckolib.animation.render.AnimatedModelRenderer;
 import edu.temple.reptiles.entities.ChameleonEntity;
 
-public class ChameleonModel extends AnimatedEntityModel<ChameleonEntity> {
+public class ChameleonModel<T extends ChameleonEntity> extends EntityModel<T> {
+    private final ModelRenderer body;
+    private final ModelRenderer head;
+    private final ModelRenderer leftEye;
+    private final ModelRenderer rightEye;
+    private final ModelRenderer tail;
+    private final ModelRenderer legLeftFront;
+    private final ModelRenderer legRightFront;
+    private final ModelRenderer legLeftBack;
+    private final ModelRenderer legRightBack;
 
-    private final AnimatedModelRenderer body;
-    private final AnimatedModelRenderer head;
-    private final AnimatedModelRenderer leftEye;
-    private final AnimatedModelRenderer rightEye;
-    private final AnimatedModelRenderer tail;
-    private final AnimatedModelRenderer legLeftFront;
-    private final AnimatedModelRenderer legtRightFront;
-    private final AnimatedModelRenderer legLeftBack;
-    private final AnimatedModelRenderer legRightBack;
+    public ChameleonModel() {
+        textureWidth = 32;
+        textureHeight = 32;
 
-    public ChameleonModel()
-    {
-        textureWidth = 16;
-        textureHeight = 16;
-        body = new AnimatedModelRenderer(this);
+        body = new ModelRenderer(this);
         body.setRotationPoint(0.0F, 22.5F, 0.0F);
         body.setTextureOffset(0, 0).addBox(-2.0F, -1.5F, -3.0F, 4.0F, 2.0F, 6.0F, 0.0F, false);
-        body.setModelRendererName("body");
-        this.registerModelRenderer(body);
 
-        head = new AnimatedModelRenderer(this);
+        head = new ModelRenderer(this);
         head.setRotationPoint(0.0F, 0.0F, -2.0F);
         body.addChild(head);
-        head.setTextureOffset(0, 0).addBox(-1.5F, -2.0F, -3.0F, 3.0F, 2.0F, 3.0F, 0.0F, false);
-        head.setModelRendererName("head");
-        this.registerModelRenderer(head);
+        head.setTextureOffset(0, 8).addBox(-1.5F, -2.0F, -3.0F, 3.0F, 2.0F, 3.0F, 0.0F, false);
 
-        leftEye = new AnimatedModelRenderer(this);
+        leftEye = new ModelRenderer(this);
         leftEye.setRotationPoint(0.0F, -1.0F, -1.8F);
         head.addChild(leftEye);
         setRotationAngle(leftEye, 0.0F, -0.1745F, 0.0F);
-        leftEye.setTextureOffset(0, 0).addBox(-2.0F, -0.5F, -0.5F, 1.0F, 1.0F, 1.0F, 0.0F, false);
-        leftEye.setModelRendererName("leftEye");
-        this.registerModelRenderer(leftEye);
+        leftEye.setTextureOffset(4, 13).addBox(-2.0F, -0.5F, -0.5F, 1.0F, 1.0F, 1.0F, 0.0F, false);
 
-        rightEye = new AnimatedModelRenderer(this);
+        rightEye = new ModelRenderer(this);
         rightEye.setRotationPoint(0.0F, -1.0F, -1.8F);
         head.addChild(rightEye);
         setRotationAngle(rightEye, 0.0F, 0.1745F, 0.0F);
-        rightEye.setTextureOffset(0, 0).addBox(1.0F, -0.5F, -0.5F, 1.0F, 1.0F, 1.0F, 0.0F, true);
-        rightEye.setModelRendererName("rightEye");
-        this.registerModelRenderer(rightEye);
+        rightEye.setTextureOffset(0, 13).addBox(1.0F, -0.5F, -0.5F, 1.0F, 1.0F, 1.0F, 0.0F, false);
 
-        tail = new AnimatedModelRenderer(this);
+        tail = new ModelRenderer(this);
         tail.setRotationPoint(0.0F, 0.5F, 2.5F);
         body.addChild(tail);
-        tail.setTextureOffset(0, 0).addBox(-1.0F, -2.5F, 0.0F, 2.0F, 3.0F, 3.0F, 0.0F, false);
-        tail.setModelRendererName("tail");
-        this.registerModelRenderer(tail);
+        tail.setTextureOffset(9, 10).addBox(-1.0F, -2.5F, 0.0F, 2.0F, 3.0F, 3.0F, 0.0F, false);
 
-        legLeftFront = new AnimatedModelRenderer(this);
+        legLeftFront = new ModelRenderer(this);
         legLeftFront.setRotationPoint(-1.5F, 0.15F, -2.0F);
         body.addChild(legLeftFront);
         setRotationAngle(legLeftFront, 0.0F, 0.0F, -0.4363F);
-        legLeftFront.setTextureOffset(0, 0).addBox(-2.3F, -0.65F, 0.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
-        legLeftFront.setModelRendererName("legLeftFront");
-        this.registerModelRenderer(legLeftFront);
+        legLeftFront.setTextureOffset(9, 8).addBox(-2.3F, -0.65F, 0.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
 
-        legtRightFront = new AnimatedModelRenderer(this);
-        legtRightFront.setRotationPoint(1.5F, 0.15F, -2.0F);
-        body.addChild(legtRightFront);
-        setRotationAngle(legtRightFront, 0.0F, 0.0F, 0.4363F);
-        legtRightFront.setTextureOffset(0, 0).addBox(0.3F, -0.65F, 0.0F, 2.0F, 1.0F, 1.0F, 0.0F, true);
-        legtRightFront.setModelRendererName("legtRightFront");
-        this.registerModelRenderer(legtRightFront);
+        legRightFront = new ModelRenderer(this);
+        legRightFront.setRotationPoint(1.5F, 0.15F, -2.0F);
+        body.addChild(legRightFront);
+        setRotationAngle(legRightFront, 0.0F, 0.0F, 0.4363F);
+        legRightFront.setTextureOffset(0, 4).addBox(0.3F, -0.65F, 0.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
 
-        legLeftBack = new AnimatedModelRenderer(this);
+        legLeftBack = new ModelRenderer(this);
         legLeftBack.setRotationPoint(-1.5F, 0.15F, 0.8F);
         body.addChild(legLeftBack);
         setRotationAngle(legLeftBack, 0.0F, 0.0F, -0.4363F);
-        legLeftBack.setTextureOffset(0, 0).addBox(-2.3F, -0.65F, 0.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
-        legLeftBack.setModelRendererName("legLeftBack");
-        this.registerModelRenderer(legLeftBack);
+        legLeftBack.setTextureOffset(0, 2).addBox(-2.3F, -0.65F, 0.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
 
-        legRightBack = new AnimatedModelRenderer(this);
+        legRightBack = new ModelRenderer(this);
         legRightBack.setRotationPoint(1.5F, 0.15F, 0.8F);
         body.addChild(legRightBack);
         setRotationAngle(legRightBack, 0.0F, 0.0F, 0.4363F);
-        legRightBack.setTextureOffset(0, 0).addBox(0.3F, -0.65F, 0.0F, 2.0F, 1.0F, 1.0F, 0.0F, true);
-        legRightBack.setModelRendererName("legRightBack");
-        this.registerModelRenderer(legRightBack);
-
-        this.rootBones.add(body);
+        legRightBack.setTextureOffset(0, 0).addBox(0.3F, -0.65F, 0.0F, 2.0F, 1.0F, 1.0F, 0.0F, false);
     }
 
+    @Override
+    public void setRotationAngles(ChameleonEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+
+    }
 
     @Override
-    public ResourceLocation getAnimationFileLocation()
-    {
-        return new ResourceLocation("reptiles", "animations/chameleon.json");
+    public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+        body.render(matrixStack, buffer, packedLight, packedOverlay);
+    }
+
+    public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+        modelRenderer.rotateAngleX = x;
+        modelRenderer.rotateAngleY = y;
+        modelRenderer.rotateAngleZ = z;
     }
 }

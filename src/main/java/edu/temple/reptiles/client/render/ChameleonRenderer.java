@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 
-public class ChameleonRenderer extends MobRenderer<ChameleonEntity, ChameleonModel> {
+public class ChameleonRenderer extends MobRenderer<ChameleonEntity, ChameleonModel<ChameleonEntity>> {
 
     protected static ResourceLocation TEXTURE;
 

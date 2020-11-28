@@ -12,27 +12,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
-import software.bernie.geckolib.animation.builder.AnimationBuilder;
-import software.bernie.geckolib.animation.controller.AnimationController;
-import software.bernie.geckolib.animation.controller.EntityAnimationController;
-import software.bernie.geckolib.entity.IAnimatedEntity;
-import software.bernie.geckolib.event.AnimationTestEvent;
-import software.bernie.geckolib.manager.EntityAnimationManager;
 
 import java.util.*;
 
-public class ChameleonEntity extends CreatureEntity implements IAnimatedEntity {
-
-    public EntityAnimationManager manager;
-    private AnimationController controller;
+public class ChameleonEntity extends CreatureEntity {
 
     private static final Map<Item, Float> preferredItems = initializePreferredItems();
 
     public ChameleonEntity(EntityType<? extends CreatureEntity> type, World worldIn) {
         super(type, worldIn);
-        this.manager = new EntityAnimationManager();
-        this.controller = new EntityAnimationController(this, "animationController", 20, this::animationPredicate);
-        registerAnimationControllers();
     }
 
     private static Map<Item, Float> initializePreferredItems() {
@@ -46,16 +34,6 @@ public class ChameleonEntity extends CreatureEntity implements IAnimatedEntity {
         toReturn.put(Items.TRIDENT, 3.0f);
         toReturn.put(Items.NAME_TAG, 2.0f);
         return toReturn;
-    }
-
-    private<E extends ChameleonEntity> boolean animationPredicate(AnimationTestEvent<E> event){
-            controller.setAnimation(new AnimationBuilder().addAnimation("animation.chameleon.walk", true));
-            return true;
-
-    }
-
-    private void registerAnimationControllers(){
-        this.manager.addAnimationController(this.controller);
     }
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
@@ -114,12 +92,6 @@ public class ChameleonEntity extends CreatureEntity implements IAnimatedEntity {
         }
         super.livingTick();
     }
-
-    @Override
-    public EntityAnimationManager getAnimationManager() {
-        return this.manager;
-    }
-
 
     static class FindItemsGoal extends Goal {
         private final ChameleonEntity chameleon;
