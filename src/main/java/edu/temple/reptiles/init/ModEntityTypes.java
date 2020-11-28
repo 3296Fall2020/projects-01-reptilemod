@@ -51,7 +51,7 @@ public class ModEntityTypes {
 
     public static final RegistryObject<EntityType<GilaMonsterEntity>> GILA_MONSTER = ENTITY_TYPES.register("gila_monster",
             () -> EntityType.Builder.create(GilaMonsterEntity::new, EntityClassification.CREATURE)
-            .size(1.0f, 1.0f)
+            .size(0.8f, 0.2f)
             .build(new ResourceLocation(Reptiles.MOD_ID, "gila_monster").toString()));
 }
 

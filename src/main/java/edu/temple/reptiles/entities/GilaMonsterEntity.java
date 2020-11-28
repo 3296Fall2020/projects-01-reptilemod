@@ -1,6 +1,7 @@
 package edu.temple.reptiles.entities;
 
 import edu.temple.reptiles.blocks.GilaHideBlock;
+import edu.temple.reptiles.entities.ai.BaskGoal;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
@@ -44,6 +45,7 @@ public class GilaMonsterEntity extends CreatureEntity implements IAnimatedEntity
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.2 ));
         this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, PlayerEntity.class, 8.0f, 1.2D, 1.25D));
         this.goalSelector.addGoal(4, new HideGoal(this, 2.0D));
+        this.goalSelector.addGoal(5, new GilaBask(this));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
     }
@@ -68,7 +70,14 @@ public class GilaMonsterEntity extends CreatureEntity implements IAnimatedEntity
         this.manager.addAnimationController(this.controller);
     }
 
-    static class HideGoal extends RandomWalkingGoal{
+    private class GilaBask extends BaskGoal {
+        public GilaBask(CreatureEntity creatureIn) {
+            super(creatureIn);
+        }
+
+    }
+
+    private class HideGoal extends RandomWalkingGoal{
         private boolean doMerge;
         private Direction facing;
         private double hideDistance;
