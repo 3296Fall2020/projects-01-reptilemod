@@ -8,6 +8,11 @@
   "item.reptiles.gecko_spawn_egg": "Gecko Spawn Egg",
   "item.reptiles.nessie_spawn_egg": "Nessie Spawn Egg",
 
+  "item.reptiles.scale": "Scale",
+  "item.reptiles.scale_mail_helmet": "Scale Mail Helmet",
+  "item.reptiles.scale_mail_chestplate": "Scale Mail Chestplate",
+  "item.reptiles.scale_mail_leggings": "Scale Mail Leggings",
+  "item.reptiles.scale_mail_boots": "Scale Mail Boots",
 
   "entity.reptiles.gecko": "Gecko",
   "entity.reptiles.dinosaur": "Dinosaur",
