@@ -46,9 +46,16 @@ public class ModEntityTypes {
                 .size(2.0f, 2.0f)
                 .build(new ResourceLocation(Reptiles.MOD_ID, "nessie").toString()));
 
+
+    public static final RegistryObject<EntityType<GilaMonsterEntity>> GILA_MONSTER = ENTITY_TYPES.register("gila_monster",
+            () -> EntityType.Builder.create(GilaMonsterEntity::new, EntityClassification.CREATURE)
+            .size(0.8f, 0.2f)
+            .build(new ResourceLocation(Reptiles.MOD_ID, "gila_monster").toString()));
+
     public static final RegistryObject<EntityType<SnakeEntity>> SNAKE = ENTITY_TYPES.register("snake",
             () -> EntityType.Builder.create(SnakeEntity::new, EntityClassification.CREATURE)
                     .size(1.0f, 0.25f)
                     .build(new ResourceLocation(Reptiles.MOD_ID, "snake").toString()));
+
 }
 
