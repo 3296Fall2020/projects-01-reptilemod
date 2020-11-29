@@ -12,27 +12,31 @@ public abstract class BaskGoal extends MoveToBlockGoal {
         super(creatureIn, 1.0D, 2);
     }
 
+    private boolean worldConditions(){
+        return this.creature.isOnGround() && !this.creature.isInWater() && this.creature.world.isDaytime() && !this.creature.world.isRaining() && !this.creature.world.isThundering();
+    }
+
     @Override
     public boolean shouldExecute() {
-        return super.shouldExecute() && !this.creature.isInWater() && this.creature.world.isDaytime() && !this.creature.world.isRaining() && !this.creature.world.isThundering();
+        return super.shouldExecute() && this.worldConditions();
     }
 
     @Override
     public boolean shouldContinueExecuting(){
 
-        return this.timeoutCounter >= -this.maxStayTicks && this.timeoutCounter <= 1200 && this.shouldMoveTo(this.creature.world, this.destinationBlock) && !this.creature.isInWaterRainOrBubbleColumn();
+        return this.timeoutCounter >= -this.maxStayTicks && this.timeoutCounter <= 1200 && this.shouldMoveTo(this.creature.world, this.destinationBlock) && this.worldConditions();
     }
 
     @Override
     public void startExecuting(){
         func_220725_g();
+        baskAction();
         this.timeoutCounter = 0;
         this.maxStayTicks = this.creature.getRNG().nextInt(this.creature.getRNG().nextInt(1200) + 1200) + 1200;
     }
 
     @Override
     public void tick(){
-        baskAction();
         super.tick();
 
     }

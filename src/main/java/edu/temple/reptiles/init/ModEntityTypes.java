@@ -28,7 +28,7 @@ public class ModEntityTypes {
                     .build(new ResourceLocation(Reptiles.MOD_ID, "dinosaur").toString()));
     public static final RegistryObject<EntityType<CrocodileEntity>> CROCODILE = ENTITY_TYPES.register(("crocodile"),
         () -> EntityType.Builder.create(CrocodileEntity::new, EntityClassification.MONSTER)
-                .size(1.0f, 0.4f)
+                .size(1.5f, 0.4f)
                 .build(new ResourceLocation(Reptiles.MOD_ID, "crocodile").toString()));
 
     public static final RegistryObject<EntityType<ChameleonEntity>> CHAMELEON = ENTITY_TYPES.register(("chameleon"),
