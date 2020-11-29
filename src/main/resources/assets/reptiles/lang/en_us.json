@@ -1,11 +1,24 @@
 {
   "item.reptiles.cricket": "Cricket",
   "item.reptiles.meal_worm": "Meal Worm",
+  "item.reptiles.bearded_dragon_spawn_egg": "Bearded Dragon Spawn Egg",
+  "item.reptiles.chameleon_spawn_egg": "Chameleon Spawn Egg",
+  "item.reptiles.crocodile_spawn_egg": "Crocodile Spawn Egg",
+  "item.reptiles.dinosaur_spawn_egg": "Dinosaur Spawn Egg",
+  "item.reptiles.gecko_spawn_egg": "Gecko Spawn Egg",
+  "item.reptiles.nessie_spawn_egg": "Nessie Spawn Egg",
+
+  "item.reptiles.scale": "Scale",
+  "item.reptiles.scale_mail_helmet": "Scale Mail Helmet",
+  "item.reptiles.scale_mail_chestplate": "Scale Mail Chestplate",
+  "item.reptiles.scale_mail_leggings": "Scale Mail Leggings",
+  "item.reptiles.scale_mail_boots": "Scale Mail Boots",
 
   "entity.reptiles.gecko": "Gecko",
   "entity.reptiles.dinosaur": "Dinosaur",
   "entity.reptiles.crocodile": "Crocodile",
   "entity.reptiles.chameleon": "Chameleon",
   "entity.reptiles.beardeddragon": "Bearded Dragon",
-  "entity.reptiles.nessie": "Nessie"
+  "entity.reptiles.nessie": "Nessie",
+  "entity.reptiles.snake": "Snake"
 }
