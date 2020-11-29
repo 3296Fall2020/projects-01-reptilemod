@@ -13,14 +13,18 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import software.bernie.geckolib.animation.builder.AnimationBuilder;
 import software.bernie.geckolib.animation.controller.AnimationController;
 import software.bernie.geckolib.animation.controller.EntityAnimationController;
@@ -28,6 +32,7 @@ import software.bernie.geckolib.entity.IAnimatedEntity;
 import software.bernie.geckolib.event.AnimationTestEvent;
 import software.bernie.geckolib.manager.EntityAnimationManager;
 
+import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class BeardedDragonEntity extends TameableEntity implements IAngerable, IAnimatedEntity {
@@ -35,14 +40,17 @@ public class BeardedDragonEntity extends TameableEntity implements IAngerable, I
     private EntityAnimationManager manager = new EntityAnimationManager();
     private AnimationController controller = new EntityAnimationController(this, "moveController", 28, this::animationPredicate);
 
+
     private static final DataParameter<Integer> getAngerTime = EntityDataManager.createKey(BeardedDragonEntity.class, DataSerializers.VARINT);
     private UUID target;
 
-    private static final RangedInteger rangedInteger = TickRangeConverter.convertRange(10, 29);
+    private static final RangedInteger field_234230_bG_ = TickRangeConverter.convertRange(20, 29);
 
     public BeardedDragonEntity(EntityType<? extends TameableEntity> type, World worldIn) {
         super(type, worldIn);
         registerAnimationController();
+
+
     }
     public static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.CARROT, ReptileItems.CRICKET, ReptileItems.MEAL_WORM);
 
@@ -108,40 +116,53 @@ public class BeardedDragonEntity extends TameableEntity implements IAngerable, I
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState blockIn) {
-        this.playSound(SoundEvents.ENTITY_LLAMA_STEP, 0.15F, 1.0F);
+        this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15F, 1.0F);
     }
 
 
     @Override
     public AgeableEntity createChild(AgeableEntity ageable) {
-
         return ModEntityTypes.BEARDEDDRAGON.get().create(this.world);
     }
 
-    @Override
+
+    protected void registerData(){
+        super.registerData();
+        this.dataManager.register(getAngerTime, 0);
+    }
     public int getAngerTime() {
         return this.dataManager.get(getAngerTime);
     }
 
-    @Override
+
     public void setAngerTime(int time) {
         this.dataManager.set(getAngerTime, time);
     }
 
-    //@org.jetbrains.annotations.Nullable
-    @Override
+
+
+    @Nullable
     public UUID getAngerTarget() {
         return this.target;
     }
 
-    @Override
-    public void setAngerTarget( UUID target) {
+
+    public void setAngerTarget(@Nullable UUID target) {
         this.target = target;
     }
 
-    @Override
+
     public void func_230258_H__() {
-        this.setAngerTime(rangedInteger.func_233018_a_(this.rand));
+        this.setAngerTime(field_234230_bG_.func_233018_a_(this.rand));
+    }
+    public void writeAdditional(CompoundNBT compound) {
+        super.writeAdditional(compound);
+
+        this.writeAngerNBT(compound);
+    }
+    public void readAdditional(CompoundNBT compound) {
+        super.readAdditional(compound);
+        this.readAngerNBT((ServerWorld)this.world, compound);
     }
 
     @Override
@@ -149,19 +170,52 @@ public class BeardedDragonEntity extends TameableEntity implements IAngerable, I
         return manager;
     }
 
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        if (this.isInvulnerableTo(source)) {
+            return false;
+        } else {
+            Entity entity = source.getTrueSource();
+            this.func_233687_w_(false);
+            if (entity != null && !(entity instanceof PlayerEntity) && !(entity instanceof AbstractArrowEntity)) {
+                amount = (amount + 1.0F) / 2.0F;
+            }
+
+            return super.attackEntityFrom(source, amount);
+        }
+    }
+
+
+    public void livingTick() {
+        super.livingTick();
+        if (!this.world.isRemote) {
+            this.func_241359_a_((ServerWorld) this.world, true);
+        }
+
+    }
+    public void tick(){
+
+    }
+
     private <E extends BeardedDragonEntity> boolean animationPredicate(AnimationTestEvent<E> event){
+
+        if(this.isAggressive()){
+            controller.setAnimation(new AnimationBuilder().addAnimation("animation.reptiles.angry", true));
+            return true;
+        }
         if(event.isWalking()){
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.reptiles.walk", true));
             return true;
         }
+
         else{
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.reptiles.idle", true));
-            return true;
         }
+        return true;
     }
     private void registerAnimationController(){
         manager.addAnimationController(controller);
     }
+
 
 
     private class beardedDragonBaskGoal extends BaskGoal{
