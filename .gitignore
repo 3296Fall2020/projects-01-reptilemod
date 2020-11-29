@@ -28,7 +28,18 @@ build
 
 # other
 eclipse
-run
+run/.mixin.out
+run/config
+run/crash-reports
+run/defaultconfigs
+run/logs
+run/mods
+run/resourcepacks
+run/saves/New World
+run/screenshots
+run/options.txt
+run/usercache.json
+run/usernamecache.json
 
 # log
 .log
