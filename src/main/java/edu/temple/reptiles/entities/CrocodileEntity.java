@@ -182,11 +182,6 @@ public class CrocodileEntity extends MonsterEntity implements IAnimatedEntity {
 
     }
 
-    @Override
-    public boolean canSpawn(IWorld worldIn, SpawnReason spawnReasonIn) {
-        return true;
-    }
-
     static class Navigator extends SwimmerPathNavigator {
         Navigator(CrocodileEntity crocodile, World worldIn) {
             super(crocodile, worldIn);
