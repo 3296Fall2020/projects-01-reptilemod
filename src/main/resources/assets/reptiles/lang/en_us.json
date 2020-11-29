@@ -19,5 +19,6 @@
   "entity.reptiles.crocodile": "Crocodile",
   "entity.reptiles.chameleon": "Chameleon",
   "entity.reptiles.beardeddragon": "Bearded Dragon",
-  "entity.reptiles.nessie": "Nessie"
+  "entity.reptiles.nessie": "Nessie",
+  "entity.reptiles.snake": "Snake"
 }

@@ -3,13 +3,10 @@ package edu.temple.reptiles.init;
 import edu.temple.reptiles.Reptiles;
 import edu.temple.reptiles.entities.*;
 import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.monster.MonsterEntity;
+
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.gen.Heightmap;
+
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -48,5 +45,10 @@ public class ModEntityTypes {
         () -> EntityType.Builder.create(NessieEntity::new, EntityClassification.MONSTER)
                 .size(2.0f, 2.0f)
                 .build(new ResourceLocation(Reptiles.MOD_ID, "nessie").toString()));
+
+    public static final RegistryObject<EntityType<SnakeEntity>> SNAKE = ENTITY_TYPES.register("snake",
+            () -> EntityType.Builder.create(SnakeEntity::new, EntityClassification.CREATURE)
+                    .size(1.0f, 0.25f)
+                    .build(new ResourceLocation(Reptiles.MOD_ID, "snake").toString()));
 }
 
