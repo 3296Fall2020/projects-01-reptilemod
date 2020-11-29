@@ -64,6 +64,8 @@ public class Reptiles
             GlobalEntityTypeAttributes.put(ModEntityTypes.BEARDEDDRAGON.get(), BeardedDragonEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.NESSIE.get(), NessieEntity.setCustomAttributes().create());
             GlobalEntityTypeAttributes.put(ModEntityTypes.GILA_MONSTER.get(), GilaMonsterEntity.setCustomAttributes().create());
+            GlobalEntityTypeAttributes.put(ModEntityTypes.SNAKE.get(), SnakeEntity.setCustomAttributes().create());
+
         });
     }
 

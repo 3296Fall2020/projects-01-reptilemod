@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "sbs",
+    "sss",
+    "sss"
+  ],
+  "key":
+  {
+    "s":
+    {
+      "item": "reptiles:scale"
+    },
+    "b":
+    {
+      "item": "minecraft:chainmail_chestplate"
+    }
+  },
+  "result":
+  {
+    "item": "reptiles:scale_mail_chestplate"
+  }
+}

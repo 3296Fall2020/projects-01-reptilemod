@@ -36,7 +36,6 @@ public class ChameleonEntity extends CreatureEntity {
         return toReturn;
     }
 
-
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return CreatureEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 4.0D)
@@ -93,7 +92,6 @@ public class ChameleonEntity extends CreatureEntity {
         }
         super.livingTick();
     }
-
 
     static class FindItemsGoal extends Goal {
         private final ChameleonEntity chameleon;
