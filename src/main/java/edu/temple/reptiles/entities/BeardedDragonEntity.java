@@ -9,12 +9,10 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.AbstractSkeletonEntity;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.DyeColor;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
@@ -82,11 +80,8 @@ public class BeardedDragonEntity extends TameableEntity implements IAngerable, I
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setCallsForHelp());
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::func_233680_b_));
-      //  this.targetSelector.addGoal(5, new NonTamedTargetGoal<>(this, AnimalEntity.class, false, TARGET_ENTITIES));
-        this.targetSelector.addGoal(6, new NonTamedTargetGoal<>(this, TurtleEntity.class, false, TurtleEntity.TARGET_DRY_BABY));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, false));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, BeardedDragonEntity.class, false));
         this.targetSelector.addGoal(8, new ResetAngerGoal<>(this, true));
 
 
@@ -192,9 +187,7 @@ public class BeardedDragonEntity extends TameableEntity implements IAngerable, I
         }
 
     }
-    public void tick(){
 
-    }
 
     private <E extends BeardedDragonEntity> boolean animationPredicate(AnimationTestEvent<E> event){
 
@@ -202,7 +195,7 @@ public class BeardedDragonEntity extends TameableEntity implements IAngerable, I
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.reptiles.angry", true));
             return true;
         }
-        if(event.isWalking()){
+        else if(event.isWalking()){
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.reptiles.walk", true));
             return true;
         }

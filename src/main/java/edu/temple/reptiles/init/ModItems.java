@@ -63,4 +63,11 @@ public class ModItems {
     public static final RegistryObject<ModSpawnEggItem> NESSIE_SPAWN_EGG = ITEMS.register("nessie_spawn_egg",
             () -> new ModSpawnEggItem(ModEntityTypes.NESSIE, 0x30F2EC, 0x0B302F, new Item.Properties().group(ItemGroup.MISC))
     );
+    public static final RegistryObject<ModSpawnEggItem> SNAKE_SPAWN_EGG = ITEMS.register("snake_spawn_egg",
+            () -> new ModSpawnEggItem(ModEntityTypes.SNAKE, 0x83720C, 0xAEA56F, new Item.Properties().group(ItemGroup.MISC))
+    );
+    public static final RegistryObject<ModSpawnEggItem> GILA_MONSTER_SPAWN_EGG = ITEMS.register("gila_monster_spawn_egg",
+            () -> new ModSpawnEggItem(ModEntityTypes.GILA_MONSTER, 0x1A1918, 0xE5A82F, new Item.Properties().group(ItemGroup.MISC))
+    );
+
 }
