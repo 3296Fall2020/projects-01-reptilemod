@@ -36,7 +36,7 @@ public class ModEntitySpawns {
             if (biome.getCategory() == Biome.Category.SWAMP || biome.getCategory() == Biome.Category.RIVER) {
 
 
-                biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(ModEntityTypes.CROCODILE.get(), 10, 1, 2));
+                biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(ModEntityTypes.CROCODILE.get(), 5, 1, 2));
 
             }
             if (biome.getCategory() == Biome.Category.JUNGLE) {
@@ -44,13 +44,13 @@ public class ModEntitySpawns {
             }
             if (biome.getCategory() == Biome.Category.DESERT) {
                 biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.GILA_MONSTER.get(), 10, 2, 3));
-
-                if (biome.getCategory() == Biome.Category.SWAMP || biome.getCategory() == Biome.Category.JUNGLE || biome.getCategory() == Biome.Category.DESERT) {
-                    biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.SNAKE.get(), 10, 1, 1));
-
-                }
+            }
+            if (biome.getCategory() == Biome.Category.SWAMP || biome.getCategory() == Biome.Category.JUNGLE || biome.getCategory() == Biome.Category.DESERT) {
+                biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.SNAKE.get(), 10, 1, 2));
 
             }
+
+
         }
     }
 }
