@@ -29,15 +29,15 @@
     },
     "done": true
   },
-  "minecraft:recipes/building_blocks/purple_concrete_powder": {
-    "criteria": {
-      "has_sand": "2020-11-29 16:07:24 -0500"
-    },
-    "done": true
-  },
   "minecraft:recipes/tools/compass": {
     "criteria": {
       "has_redstone": "2020-11-29 16:02:57 -0500"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/purple_concrete_powder": {
+    "criteria": {
+      "has_sand": "2020-11-29 16:07:24 -0500"
     },
     "done": true
   },
@@ -91,9 +91,9 @@
     },
     "done": false
   },
-  "minecraft:recipes/decorations/campfire": {
+  "minecraft:recipes/building_blocks/sandstone": {
     "criteria": {
-      "has_stick": "2020-11-29 16:28:49 -0500"
+      "has_sand": "2020-11-29 16:07:24 -0500"
     },
     "done": true
   },
@@ -103,9 +103,9 @@
     },
     "done": true
   },
-  "minecraft:recipes/building_blocks/sandstone": {
+  "minecraft:recipes/decorations/campfire": {
     "criteria": {
-      "has_sand": "2020-11-29 16:07:24 -0500"
+      "has_stick": "2020-11-29 16:28:49 -0500"
     },
     "done": true
   },
@@ -115,15 +115,15 @@
     },
     "done": true
   },
-  "minecraft:recipes/decorations/ladder": {
-    "criteria": {
-      "has_stick": "2020-11-29 16:28:49 -0500"
-    },
-    "done": true
-  },
   "minecraft:recipes/redstone/redstone_torch": {
     "criteria": {
       "has_redstone": "2020-11-29 16:02:57 -0500"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/ladder": {
+    "criteria": {
+      "has_stick": "2020-11-29 16:28:49 -0500"
     },
     "done": true
   },
@@ -187,6 +187,12 @@
     },
     "done": true
   },
+  "minecraft:recipes/combat/arrow": {
+    "criteria": {
+      "has_feather": "2020-11-30 11:42:02 -0500"
+    },
+    "done": true
+  },
   "minecraft:recipes/transportation/jungle_boat": {
     "criteria": {
       "in_water": "2020-11-29 16:10:49 -0500"
@@ -229,15 +235,15 @@
     },
     "done": true
   },
-  "minecraft:recipes/building_blocks/gray_concrete_powder": {
-    "criteria": {
-      "has_sand": "2020-11-29 16:07:24 -0500"
-    },
-    "done": true
-  },
   "minecraft:recipes/building_blocks/quartz_stairs_from_quartz_block_stonecutting": {
     "criteria": {
       "has_quartz_block": "2020-11-29 16:02:43 -0500"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/gray_concrete_powder": {
+    "criteria": {
+      "has_sand": "2020-11-29 16:07:24 -0500"
     },
     "done": true
   },
@@ -349,9 +355,21 @@
     },
     "done": true
   },
+  "minecraft:story/root": {
+    "criteria": {
+      "crafting_table": "2020-11-30 11:47:54 -0500"
+    },
+    "done": true
+  },
   "minecraft:recipes/redstone/dropper": {
     "criteria": {
       "has_redstone": "2020-11-29 16:02:57 -0500"
+    },
+    "done": true
+  },
+  "minecraft:recipes/transportation/oak_boat": {
+    "criteria": {
+      "in_water": "2020-11-29 16:10:49 -0500"
     },
     "done": true
   },
@@ -364,12 +382,6 @@
   "minecraft:recipes/combat/crossbow": {
     "criteria": {
       "has_stick": "2020-11-29 16:28:49 -0500"
-    },
-    "done": true
-  },
-  "minecraft:recipes/transportation/oak_boat": {
-    "criteria": {
-      "in_water": "2020-11-29 16:10:49 -0500"
     },
     "done": true
   },
