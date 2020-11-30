@@ -26,7 +26,7 @@ import software.bernie.geckolib.manager.EntityAnimationManager;
 public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
     private EntityAnimationManager manager;
     private AnimationController controller = new EntityAnimationController(this, "animationController", 20, this::animationPredicate);
-    private AnimationController biteController = new EntityAnimationController(this, "biteController", 10, this::biteControllerAnim);
+    private AnimationController biteController = new EntityAnimationController(this, "biteController", 20, this::biteControllerAnim);
     private AnimationController legController = new EntityAnimationController(this, "legController", 10, this::legControllerAnim);
 
 
@@ -81,9 +81,9 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
 
 
     private void registerAnimationControllers(){
-
         this.manager.addAnimationController(this.controller);
         this.manager.addAnimationController(this.legController);
+        this.manager.addAnimationController(this.biteController);
     }
 
     @Override
