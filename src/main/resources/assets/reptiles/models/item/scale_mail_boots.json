@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "reptiles:items/scale_mail_boots"
+  }
+}
