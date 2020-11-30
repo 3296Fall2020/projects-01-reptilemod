@@ -99,3 +99,15 @@ Eventually he built up a list of favored mods, and modpacks, but was curious if 
 Adam Smith is an elementary school teacher in Orlando, Florida.  He graduated from FSU in 2007 with an education degree and has since taught 2nd–5th graders in a local elementary school.  He's an avid outdoorsman with a love for nature.  While Adam's not too technically adept, he's able to use Minecraft: Education Edition to complement the curriculum in a more interactive way, helping students to better grasp topics in STEM, history, coding, and more.
 
 Recently, he's been looking for a way to teach his students about local wildlife.  Minecraft's vanilla edition includes several common species, but not many common to his state of Florida.  Adam is interested in using the Reptiles mod to add some lizard species that are native to the area and are more relevant to the students.
+
+***
+## Testing plan
+* Manual testing steps
+    1) Confirm failure
+    2) Make incremental change to feature
+    3) Confirm change is successful using either:
+        * observe feature in client
+        * output in debug log
+    
+* Screenshots for feature verification
+ 

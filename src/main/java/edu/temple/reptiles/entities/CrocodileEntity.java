@@ -94,6 +94,9 @@ public class CrocodileEntity extends MonsterEntity implements IAnimatedEntity {
         return new CrocodileEntity.Navigator(this, worldIn);
     }
 
+
+    // ------------- methods for IAnimatedEntity -------------
+
     @Override
     public EntityAnimationManager getAnimationManager() {
         return this.animManager;
@@ -119,11 +122,10 @@ public class CrocodileEntity extends MonsterEntity implements IAnimatedEntity {
         return false;
     }
 
-
-
     private void registerAnimationControllers(){
         this.animManager.addAnimationController(this.animController);
     }
+    // -------------------------------------------
 
     @Override
     protected void registerData(){
@@ -148,6 +150,7 @@ public class CrocodileEntity extends MonsterEntity implements IAnimatedEntity {
             this.croc = crocIn;
         }
 
+        // determine the crocodile's speed based on swimming or on land
         private void updateSpeed(){
             if(this.croc.areEyesInFluid(FluidTags.WATER)){
                 this.croc.setMotion(this.croc.getMotion().add(0.0D, 0.005D, 0.0D));
@@ -199,11 +202,12 @@ public class CrocodileEntity extends MonsterEntity implements IAnimatedEntity {
             this.nodeProcessor = new WalkAndSwimNodeProcessor();
             return new PathFinder(this.nodeProcessor, p_179679_1_);
         }
-
-
     }
 
-    static class CrocBaskGoal extends BaskGoal{
+
+    // ------------- Custom AI goals -------------
+
+    private static class CrocBaskGoal extends BaskGoal{
         private final CrocodileEntity croc;
 
         CrocBaskGoal(CrocodileEntity crocIn){

@@ -31,22 +31,22 @@ public class ModEntitySpawns {
                 biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.BEARDEDDRAGON.get(), 10, 1, 2));
             }
             if (biome.getCategory() == Biome.Category.JUNGLE || biome.getCategory() == Biome.Category.SWAMP) {
-                biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.CHAMELEON.get(), 100, 1, 5));
+                biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.CHAMELEON.get(), 10, 1, 5));
             }
             if (biome.getCategory() == Biome.Category.SWAMP || biome.getCategory() == Biome.Category.RIVER) {
 
 
-                biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(ModEntityTypes.CROCODILE.get(), 60, 1, 2));
+                biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(ModEntityTypes.CROCODILE.get(), 10, 1, 2));
 
             }
             if (biome.getCategory() == Biome.Category.JUNGLE) {
-                biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.GECKO.get(), 100, 2, 5));
+                biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.GECKO.get(), 10, 2, 5));
             }
             if (biome.getCategory() == Biome.Category.DESERT) {
-                biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.GILA_MONSTER.get(), 100, 2, 3));
+                biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.GILA_MONSTER.get(), 10, 2, 3));
 
                 if (biome.getCategory() == Biome.Category.SWAMP || biome.getCategory() == Biome.Category.JUNGLE || biome.getCategory() == Biome.Category.DESERT) {
-                    biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.SNAKE.get(), 100, 1, 1));
+                    biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.SNAKE.get(), 10, 1, 1));
 
                 }
 
