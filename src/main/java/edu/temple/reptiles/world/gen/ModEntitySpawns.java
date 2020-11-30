@@ -1,6 +1,5 @@
 package edu.temple.reptiles.world.gen;
 
-import com.google.common.eventbus.Subscribe;
 import edu.temple.reptiles.Reptiles;
 import edu.temple.reptiles.entities.DinosaurEntity;
 import edu.temple.reptiles.init.ModEntityTypes;
@@ -18,6 +17,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ModEntitySpawns {
 
 
+    //Natural Entity Spawning
     @SubscribeEvent
     public static void spawnEntities(FMLLoadCompleteEvent event) {
 
@@ -25,7 +25,7 @@ public class ModEntitySpawns {
 
 
             if (biome.getCategory() == Biome.Category.DESERT || biome.getCategory() == Biome.Category.PLAINS || biome.getCategory() == Biome.Category.SAVANNA || biome.getCategory() == Biome.Category.MESA) {
-                biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(ModEntityTypes.DINOSAUR.get(), 2, 1, 1));
+                biome.getSpawns(EntityClassification.MONSTER).add(new Biome.SpawnListEntry(ModEntityTypes.DINOSAUR.get(), 4, 1, 2));
             }
             if (biome.getCategory() == Biome.Category.DESERT || biome.getCategory() == Biome.Category.MESA) {
                 biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(ModEntityTypes.BEARDEDDRAGON.get(), 10, 1, 2));
@@ -54,20 +54,3 @@ public class ModEntitySpawns {
         }
     }
 }
-
-
-//    EntitySpawnPlacementRegistry.register(DINOSAUR, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::func_223325_c());
-//
-//    public static void registerEntityWorldSpawns()
-//    {
-//        registerEntityWorldSpawn(DINOSAUR, 10, 1, 6, Biomes.DESERT, Biomes.PLAINS, Biomes.SAVANNA);
-//    }
-//
-//    public static void registerEntityWorldSpawn(EntityType<?> entity, int weight, int min, int max, Biome... biomes)
-//    {
-//        for(Biome biome : biomes) {
-//            if (biome != null) {
-//                biome.getSpawns(entity.getClassification()).add(new Biome.SpawnListEntry(entity, weight, min, max));
-//            }
-//        }
-//    }

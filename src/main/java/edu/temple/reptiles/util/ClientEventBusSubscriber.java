@@ -4,7 +4,6 @@ import edu.temple.reptiles.Reptiles;
 import edu.temple.reptiles.client.render.*;
 import edu.temple.reptiles.init.ModEntityTypes;
 import edu.temple.reptiles.items.ModSpawnEggItem;
-import edu.temple.reptiles.util.handlers.SoundsHandler;
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.RegistryEvent;
@@ -39,8 +38,5 @@ public class ClientEventBusSubscriber {
 
         ModSpawnEggItem.initSpawnEggs();
     }
-//    public static void initRegistries(){
-//        SoundsHandler.registerSounds();
-//    }
 
 }
