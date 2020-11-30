@@ -12,6 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 @Mod.EventBusSubscriber(modid = Reptiles.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEntitySpawns {
 
+    //Natural Entity Spawning
     @SubscribeEvent
     public static void spawnEntities(FMLLoadCompleteEvent event){
         for (Biome biome : ForgeRegistries.BIOMES){

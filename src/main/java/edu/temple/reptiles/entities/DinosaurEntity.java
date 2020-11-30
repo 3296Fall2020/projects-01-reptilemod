@@ -47,6 +47,7 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
                 .createMutableAttribute(Attributes.FOLLOW_RANGE, 16.0D);
     }
 
+    // tail wagging animation
     public EntityAnimationManager getAnimationManager(){
         return this.manager;
     }
@@ -60,6 +61,7 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
         }
     }
 
+    // Dinosaur visually yelps briefly when attacked
     private<E extends DinosaurEntity> boolean biteControllerAnim(AnimationTestEvent<E> event){
         if(this.hurtTime > 0){
             biteController.setAnimation(new AnimationBuilder().addAnimation("animation.dinosaur.bite", true));
@@ -69,6 +71,7 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
         }
     }
 
+    // Dinosaur scuffs the ground with leg preparing for an attack when a player approaches
     private<E extends DinosaurEntity> boolean legControllerAnim(AnimationTestEvent<E> event){
 
         if(this.isAggressive()){
@@ -91,6 +94,7 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
         return 10 + this.world.rand.nextInt(20);
     }
 
+    // Custom sounds called here
     @Override
     protected SoundEvent getAmbientSound() { return SoundInit.ENTITY_DINOSAUR_AMBIENT.get(); }
     @Override
@@ -104,6 +108,7 @@ public class DinosaurEntity extends MonsterEntity implements IAnimatedEntity {
     }
 
 
+    // AI goals that give the entity "life"
     @Override
     protected void registerGoals() {
         super.registerGoals();

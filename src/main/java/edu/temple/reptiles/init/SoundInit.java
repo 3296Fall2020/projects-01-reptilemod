@@ -9,6 +9,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class SoundInit {
 
+    // Adds custom sounds for Dinosaur entity
+
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Reptiles.MOD_ID);
 
     // Dinosaur sound credits: https://www.youtube.com/watch?v=5P6exEqnnt

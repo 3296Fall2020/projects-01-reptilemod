@@ -137,5 +137,4 @@ public class DinosaurModel<T extends DinosaurEntity> extends AnimatedEntityModel
         return new ResourceLocation(Reptiles.MOD_ID, "animations/dinosaur.json");
     }
 
-
 }
