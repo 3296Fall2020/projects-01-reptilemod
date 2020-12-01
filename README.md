@@ -1,5 +1,72 @@
 # Minecraft Reptile Mod
+## Included Features and Content
 
+### Creatures
+**Bearded Dragon**
+* Angerable Entity
+	- Becomes angry if attacked by another entity, and will defend itself.
+	- Switches to angered texture when attacked, including an animation which inflates its beard. 
+	- Territorial, will attack other bearded dragons within a certain distance. 
+	- Can be calmed down if given custom insects/carrots. 
+* Spawns is desert-like biomes
+* Custom AI 
+Will find high spots on the ground to lay in the sun for a certain amount of time. 
+* Animations:
+	- Angered animation: will inflate beard if attacked. 
+	- Walking animation: moves legs if in a walking state. 
+	- Idle animation: will move tail randomly.
+	
+**Chameleon**
+* Added textures for 5 different biomes
+* Switches textures dynamically when moving between biomes
+* Runs towards and picks up items according to preferences
+* Fights back (poorly) and kills other chameleons
+
+**Crocodile**
+* Hostile Entity - attacks players and animals
+* Spawns in swamps and rivers
+* Custom Float AI Goal - While swimming tends to stay close to surface
+* Custom Bask AI Goal - Crocodiles will pick a nearby spot to sun themselves.
+
+**Dinosaur**
+* Hostile Entity - attacks players with a leap
+* Spawns in plains, mesa, desert
+* Animations:
+	- Tail-wagging
+	- Yelps
+	- Ground Scuff
+	
+**Gecko**
+* Passive mob
+* Tameable
+	- Will ride on the player when tamed
+	- Follows player around otherwise
+* Spawns in Jungles 
+* Skittish if not tamed
+	- Will allow you to get close with a seeds in your hand
+	
+**Gila Monster**
+* Passive Entity
+* Spawns in eserts
+* Avoids the player
+* Hides in sand if the player gets too close
+	- Chance to pop out again if an entity walks over its hiding spot
+	
+**Snake**
+* Angerable - Attacks player if provoked
+* Preys on chickens, rabbits
+* Spawns in swamps, jungles, deserts
+* Slithering animation
+
+### Items
+* Crickets, Meal Worms - Used to tempt Bearded Dragons
+* Scales - currently only obtainable in creative mode
+* Scalemail Armor Set - crafted using scales and a piece of chainmail armor
+	- Helm
+	- Chestplate
+	- Legs
+	- Feet
+	
 -------------------------------------------
 Source installation information for modders
 -------------------------------------------
