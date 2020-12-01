@@ -21,7 +21,7 @@ public class BeardedDragonRenderer extends MobRenderer<BeardedDragonEntity, Bear
     }
 
     public ResourceLocation getEntityTexture(BeardedDragonEntity entity) {
-        System.out.println("-----------------------   " + entity.getAngerTime() + "-----------------------------------------------");
+
         return entity.getAngerTime() > 0 ? ANGRY_TEXTURE : TEXTURE;
     }
 
