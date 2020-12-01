@@ -80,6 +80,7 @@ public class BeardedDragonEntity extends TameableEntity implements IAngerable, I
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
+        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, this::func_233680_b_));
         this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, BeardedDragonEntity.class, false));
         this.targetSelector.addGoal(8, new ResetAngerGoal<>(this, true));
@@ -95,23 +96,23 @@ public class BeardedDragonEntity extends TameableEntity implements IAngerable, I
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_LLAMA_AMBIENT;
+        return SoundEvents.ENTITY_TURTLE_AMBIENT_LAND;
     }
 
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_LLAMA_DEATH;
+        return SoundEvents.ENTITY_TURTLE_DEATH;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return SoundEvents.ENTITY_LLAMA_HURT;
+        return SoundEvents.ENTITY_TURTLE_HURT;
     }
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState blockIn) {
-        this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15F, 1.0F);
+        this.playSound(SoundEvents.ENTITY_SILVERFISH_STEP, 0.10F, 1.0F);
     }
 
 
@@ -192,7 +193,7 @@ public class BeardedDragonEntity extends TameableEntity implements IAngerable, I
     private <E extends BeardedDragonEntity> boolean animationPredicate(AnimationTestEvent<E> event){
 
         if(this.isAggressive()){
-            controller.setAnimation(new AnimationBuilder().addAnimation("animation.reptiles.angry", true));
+            controller.setAnimation(new AnimationBuilder().addAnimation("animation.reptiles.angry", false));
             return true;
         }
         else if(event.isWalking()){
