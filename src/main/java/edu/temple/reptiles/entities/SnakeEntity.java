@@ -38,6 +38,7 @@ public class SnakeEntity extends CreatureEntity implements IAngerable, IAnimated
         registerAnimationControllers();
     }
 
+    // set physical attributes for entity
     public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
         return CreatureEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 10.0D)
@@ -64,6 +65,8 @@ public class SnakeEntity extends CreatureEntity implements IAngerable, IAnimated
     @Override
     protected int getExperiencePoints(PlayerEntity player){return 1 + this.world.rand.nextInt(4);}
 
+    // ------------- methods for IAngerable -------------
+
     @Override
     public int getAngerTime() {
         return this.dataManager.get(getAngerTime);
@@ -89,6 +92,8 @@ public class SnakeEntity extends CreatureEntity implements IAngerable, IAnimated
     public void func_230258_H__() {
         this.setAngerTime(rangedInteger.func_233018_a_(this.rand));
     }
+
+    // ------------- methods for IAnimatedEntity -------------
 
     public EntityAnimationManager getAnimationManager(){
         return this.animManager;

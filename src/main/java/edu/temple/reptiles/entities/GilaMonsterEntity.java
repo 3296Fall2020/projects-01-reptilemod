@@ -32,12 +32,14 @@ public class GilaMonsterEntity extends CreatureEntity implements IAnimatedEntity
         registerAnimationControllers();
     }
 
+    // set physical attributes for entity
     public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
         return CreatureEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 5.0D)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.20D);
     }
 
+    // set up entity AI
     @Override
     protected void registerGoals(){
         super.registerGoals();
@@ -52,6 +54,8 @@ public class GilaMonsterEntity extends CreatureEntity implements IAnimatedEntity
 
     @Override
     protected int getExperiencePoints(PlayerEntity player){ return 1 + this.world.rand.nextInt(4);}
+
+    // ------------- methods for IAnimatedEntity -------------
 
     @Override
     public EntityAnimationManager getAnimationManager(){
@@ -69,6 +73,8 @@ public class GilaMonsterEntity extends CreatureEntity implements IAnimatedEntity
     private void registerAnimationControllers(){
         this.manager.addAnimationController(this.controller);
     }
+
+    // ------------- Custom AI goals -------------
 
     private class GilaBask extends BaskGoal {
         public GilaBask(CreatureEntity creatureIn) {
