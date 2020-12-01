@@ -3,8 +3,10 @@ package edu.temple.reptiles.util;
 import edu.temple.reptiles.Reptiles;
 import edu.temple.reptiles.client.render.*;
 import edu.temple.reptiles.init.ModEntityTypes;
-import edu.temple.reptiles.util.handlers.SoundsHandler;
+import edu.temple.reptiles.items.ModSpawnEggItem;
+import net.minecraft.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -23,11 +25,18 @@ public class ClientEventBusSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.GECKO.get(), GeckoRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.BEARDEDDRAGON.get(), BeardedDragonRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.NESSIE.get(), NessieRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.GILA_MONSTER.get(), GilaMonsterRenderer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.SNAKE.get(), SnakeRenderer::new);
 
     }
 
-//    public static void initRegistries(){
-//        SoundsHandler.registerSounds();
-//    }
+    @SubscribeEvent
+    public static void onRegisterEntities(final RegistryEvent.Register<EntityType<?>> event){
+        //this is needed because normally minecraft registers items before entities, so if there are spawn eggs added into the game, they will throw
+        //an exception because the entities 'don't exist'.
+
+        ModSpawnEggItem.initSpawnEggs();
+    }
 
 }
