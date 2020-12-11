@@ -1,0 +1,49 @@
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# NetBeans specific
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run/.mixin.out
+run/config
+run/crash-reports
+run/defaultconfigs
+run/logs
+run/mods
+run/resourcepacks
+run/saves/New World
+run/screenshots
+run/options.txt
+run/usercache.json
+run/usernamecache.json
+
+# log
+.log
+
+# Files from Forge MDK
+forge*changelog.txt
+/.nb-gradle/
